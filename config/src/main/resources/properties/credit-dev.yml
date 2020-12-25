@@ -1,0 +1,102 @@
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+
+  datasource:
+    #    druid配置
+    druid:
+      filters: stat,wall,log4j2
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+        session-stat-enable: true
+        session-stat-max-count: 1000
+
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: 123456
+    dynamic:
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/mxd?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+
+        slave:
+          url: jdbc:mysql://localhost:3306/mxd?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+      # ==============================================================
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 5000
+    database: 3
+    pool:
+      maxActive: 1000
+      maxIdle: 600
+      minIdle: 1
+      maxWait: -1
+      testOnBorrow: true
+      numTestsPerEvictionRun: 1024
+      timeBetweenEvictionRunsMillis: 30000
+      minEvictableIdleTimeMillis: 1800000
+      softMinEvictableIdleTimeMillis: 1800000
+      testWhileIdle: true
+      blockWhenExhausted: false
+  # ==============================================================
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    publisher-confirms: true
+    publisher-returns: true
+    # 开启ACK
+    listener:
+      simple:
+        acknowledge-mode: manual
+  kafka:
+    bootstrap-servers: mxd-kakfa:9092
+    listener:
+      missing-topics-fatal: false
+    producer:
+      # 每次批量发送消息的数量
+      batch-size: 16
+      # 缓存容量
+      buffer-memory: 33554432
+      #设置大于0的值，则客户端会将发送失败的记录重新发送
+      retries: 0
+      # 指定消息key和消息体的编解码方式 UTF-8
+      key-serializer: org.apache.kafka.account.serialization.StringSerializer
+      value-serializer: org.apache.kafka.account.serialization.StringSerializer
+      
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml,classpath*:com/gitee/sunchenbin/mybatis/actable/mapping/*/*.xml
+  type-enums-package: com.wengegroup.model.enums
+  type-aliases-package: com.wengegroup.model.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+# ==============================================================
+#FastDFS
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image:             #缩略图生成参数
+    width: 200
+    height: 200
+  tracker-list:
+    - localhost:22122
+
+

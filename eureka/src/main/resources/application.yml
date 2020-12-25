@@ -1,0 +1,33 @@
+server:
+  port: 8761
+  servlet:
+    context-path: /
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      #defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+spring:
+  security:
+    user:
+      name: user
+      password: ${CONFIG_SERVER_PASSWORD:123}
+
+#监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    #    服务监控必须配置读取的日志位置
+    logfile:
+      external_file: /home/exchange/eureka/logs/stdout.log
+    health:
+      show-details: always

@@ -1,0 +1,68 @@
+server:
+  port: 12345
+
+spring:
+  application:
+    name: gateway
+  security:
+    user:
+      name: user
+      password: ${CONFIG_SERVER_PASSWORD:123}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      discovery:
+        #         自动生成注册的服务routes
+        locator:
+          #          集成服务发现
+          enabled: true
+          lower-case-service-id: true
+          filters:
+            - StripPrefix=1
+            #- PasswordDecoderGatewayFilter
+
+  redis:
+    host: ${REDIS-HOST:localhost}
+    password: 123456
+    port: 6379
+    timeout: 5000
+    database: 3
+
+  rabbitmq:
+    host: ${RABBIT-HOST:localhost}
+    port: 5673
+    username: guest
+    password: guest
+
+eureka:
+  instance:
+    hostname: ${REGISTER-HOST:localhost}
+    prefer-ip-address: true
+  server:
+    port: 8761
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${eureka.server.port}/eureka/
+
+#日志级别
+logging:
+  level:
+    com.mdtsk.mxd.gateway: trace
+
+#监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+#    服务监控mxd-admin必须配置读取的日志位置
+    logfile:
+      external_file: /home/exchange/gateway/logs/stdout.log
+    health:
+      show-details: always
+
+
+
+

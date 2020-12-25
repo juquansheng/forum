@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: config
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:properties/
+  security:
+    user:
+      name: user
+      password: ${CONFIG_SERVER_PASSWORD:123}
+
+server:
+  port: 11000
+  servlet:
+    context-path: /
+
+eureka:
+  instance:
+    hostname: ${REGISTER-HOST:localhost}
+    prefer-ip-address: true
+  server:
+    port: 8761
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${eureka.server.port}/eureka/
+
+
+#监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    #    服务监控必须配置读取的日志位置
+    logfile:
+      external_file: /home/exchange/config/logs/stdout.log
+    health:
+      show-details: always
