@@ -23,14 +23,14 @@ spring:
     dynamic:
       datasource:
         master:
-          url: jdbc:mysql://localhost:3306/mxd?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+          url: jdbc:mysql://localhost:3306/forum?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
           username: root
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
 
         slave:
-          url: jdbc:mysql://localhost:3306/mxd?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+          url: jdbc:mysql://localhost:3306/forum?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
           username: root
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
