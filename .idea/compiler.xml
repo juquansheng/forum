@@ -9,6 +9,7 @@
         <module name="redis" />
         <module name="gateway" />
         <module name="database" />
+        <module name="blob" />
         <module name="auth" />
         <module name="eureka" />
         <module name="util" />
@@ -19,6 +20,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="auth" target="1.8" />
+      <module name="blob" target="1.8" />
       <module name="business" target="1.8" />
       <module name="common" target="1.8" />
       <module name="config" target="1.8" />
@@ -35,6 +37,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="auth" options="-parameters" />
+      <module name="blob" options="-parameters" />
       <module name="config" options="-parameters" />
       <module name="credit" options="-parameters" />
       <module name="database" options="-parameters" />
