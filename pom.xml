@@ -65,6 +65,7 @@
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <beet1.version>3.1.8.RELEASE</beet1.version>
         <mybatis-enhance-actable.version>1.2.1.RELEASE</mybatis-enhance-actable.version>
+        <mongo.version>3.12.7</mongo.version>
     </properties>
 
     <modules>
@@ -94,6 +95,12 @@
             <version>${spring-cloud.version}</version>
             <type>pom</type>
             <scope>import</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
 
         <dependency>

@@ -16,6 +16,7 @@
         <module name="credit" />
         <module name="model" />
         <module name="config" />
+        <module name="mongondb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -30,6 +31,7 @@
       <module name="forum" target="1.8" />
       <module name="gateway" target="1.8" />
       <module name="model" target="1.8" />
+      <module name="mongondb" target="1.8" />
       <module name="redis" target="1.8" />
       <module name="util" target="1.8" />
     </bytecodeTargetLevel>
@@ -44,6 +46,7 @@
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="model" options="-parameters" />
+      <module name="mongondb" options="-parameters" />
       <module name="redis" options="-parameters" />
       <module name="util" options="-parameters" />
     </option>

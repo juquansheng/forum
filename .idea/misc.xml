@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/common/database/pom.xml" />
         <option value="$PROJECT_DIR$/business/blob/pom.xml" />
+        <option value="$PROJECT_DIR$/common/mongondb/pom.xml" />
       </list>
     </option>
   </component>

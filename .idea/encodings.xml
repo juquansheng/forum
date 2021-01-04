@@ -8,6 +8,8 @@
     <file url="file://$PROJECT_DIR$/common/database/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/database/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/mongondb/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/mongondb/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/redis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config/src/main/java" charset="UTF-8" />

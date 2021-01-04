@@ -1,89 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e75c791-692b-4fcf-a1cc-737b04b2c341" name="Default Changelist" comment="数据库配置修改">
-      <change afterPath="$PROJECT_DIR$/business/blob/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/src/main/java/com/uuuuuuuuuuuuuuu/blob/BlobApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/business/blob/src/test/java/com/uuuuuuuuuuuuuuu/blob/BlobApplicationTests.java" afterDir="false" />
+    <list default="true" id="2e75c791-692b-4fcf-a1cc-737b04b2c341" name="Default Changelist" comment="uuuuuuuuuuuuuuu">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_bson_4_0_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongo_java_driver_3_12_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_core_4_0_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_sync_4_0_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_mongodb_2_3_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_mongodb_3_0_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/mongondb/src/main/java/com/uuuuuuuuuuuuuuu/mongodb/config/ApplicationMongoDBConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/mongondb/src/main/java/com/uuuuuuuuuuuuuuu/mongodb/config/MongoConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/redis/src/main/java/com/uuuuuuuuuuuuuuu/redis/RedisAutoConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/wengegroup/auth/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/AuthApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/wengegroup/auth/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/test/java/com/wengegroup/auth/AuthApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/test/java/com/uuuuuuuuuuuuuuu/auth/AuthApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/credit/src/main/java/com/wengegroup/credit/CreditApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/business/credit/src/main/java/com/uuuuuuuuuuuuuuu/credit/CreditApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/credit/src/main/java/com/wengegroup/credit/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/business/credit/src/main/java/com/uuuuuuuuuuuuuuu/credit/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/credit/src/test/java/com/wengegroup/credit/CreditApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/business/credit/src/test/java/com/uuuuuuuuuuuuuuu/credit/CreditApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database/src/main/java/com/wengegroup/database/DynamicDataSourceAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/src/main/java/com/uuuuuuuuuuuuuuu/database/DynamicDataSourceAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database/src/main/java/com/wengegroup/database/component/BeanConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/src/main/java/com/uuuuuuuuuuuuuuu/database/component/BeanConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database/src/main/java/com/wengegroup/database/component/CustomIdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/src/main/java/com/uuuuuuuuuuuuuuu/database/component/CustomIdGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database/src/main/java/com/wengegroup/database/component/CustomMetaObjectHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/src/main/java/com/uuuuuuuuuuuuuuu/database/component/CustomMetaObjectHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database/src/main/resources/META-INF/spring.factories" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/src/main/resources/META-INF/spring.factories" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database/src/test/java/com/wengegroup/database/DatabaseApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/database/src/test/java/com/uuuuuuuuuuuuuuu/database/DatabaseApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/model/src/main/java/com/wengegroup/model/ModelAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/model/src/main/java/com/uuuuuuuuuuuuuuu/model/ModelAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/model/src/main/resources/META-INF/spring.factories" beforeDir="false" afterPath="$PROJECT_DIR$/common/model/src/main/resources/META-INF/spring.factories" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/model/src/test/java/com/wengegroup/model/DaoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/model/src/test/java/com/uuuuuuuuuuuuuuu/model/DaoApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/model/src/test/java/com/wengegroup/model/MybatisPlusGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/model/src/test/java/com/uuuuuuuuuuuuuuu/model/MybatisPlusGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/redis/src/main/java/com/wengegroup/redis/EnableMxdRedisAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/redis/src/main/java/com/uuuuuuuuuuuuuuu/redis/EnableMxdRedisAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/redis/src/main/java/com/wengegroup/redis/component/RedisLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/redis/src/main/java/com/uuuuuuuuuuuuuuu/redis/component/RedisLock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/redis/src/main/java/com/wengegroup/redis/component/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/redis/src/main/java/com/uuuuuuuuuuuuuuu/redis/component/RedisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/redis/src/main/java/com/wengegroup/redis/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/redis/src/main/java/com/uuuuuuuuuuuuuuu/redis/config/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/redis/src/main/resources/META-INF/spring.factories" beforeDir="false" afterPath="$PROJECT_DIR$/common/redis/src/main/resources/META-INF/spring.factories" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/redis/src/test/java/com/wengegroup/redis/RedisApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/redis/src/test/java/com/uuuuuuuuuuuuuuu/redis/RedisApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/exception/SmsSendFailException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/exception/SmsSendFailException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/AesSecretUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/AesSecretUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/Base64Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/Base64Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/BeanUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/BeanUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/CollectionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/CollectionUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/DateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/DateUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/EmailSendUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/EmailSendUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/GsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/GsonUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/IDCardUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/IDCardUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/IpUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/IpUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/JsonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/JsonMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/MD5Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/MD5Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/Oauth2Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/Oauth2Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/ObjectUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/ObjectUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/PasswordUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/PasswordUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/PatternMatcherUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/PatternMatcherUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/RanondCodeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/RanondCodeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/SmsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/SmsUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/SnowFlakeUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/SnowFlakeUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/SpringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/SpringUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/StringListUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/StringListUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/TokenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/TokenUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/VerifyCodeUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/VerifyCodeUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/main/java/com/wengegroup/util/util/WebUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/main/java/com/uuuuuuuuuuuuuuu/util/util/WebUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/util/src/test/java/com/wengegroup/util/UtilApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/util/src/test/java/com/uuuuuuuuuuuuuuu/util/UtilApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/src/main/java/com/wengegroup/config/ConfigApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/config/src/main/java/com/uuuuuuuuuuuuuuu/config/ConfigApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/src/test/java/com/wengegroup/config/ConfigApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/config/src/test/java/com/uuuuuuuuuuuuuuu/config/ConfigApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka/src/main/java/com/wengegroup/eureka/EurekaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka/src/main/java/com/uuuuuuuuuuuuuuu/eureka/EurekaApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka/src/main/java/com/wengegroup/eureka/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka/src/main/java/com/uuuuuuuuuuuuuuu/eureka/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka/src/test/java/com/wengegroup/eureka/EurekaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka/src/test/java/com/uuuuuuuuuuuuuuu/eureka/EurekaApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/constants/HeaderConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/constants/HeaderConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/constants/OrderedConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/constants/OrderedConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/filter/PasswordDecoderGatewayFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/filter/PasswordDecoderGatewayFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/filter/RequestLogFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/filter/RequestLogFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/utils/CacheServerHttpRequestDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/utils/CacheServerHttpRequestDecorator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/utils/DecoratorUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/utils/DecoratorUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/utils/EnvironmentUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/utils/EnvironmentUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/utils/FormatUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/utils/FormatUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/utils/GenerateIdUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/utils/GenerateIdUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/utils/IpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/utils/IpUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/utils/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/utils/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/wengegroup/gateway/utils/LogHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/uuuuuuuuuuuuuuu/gateway/utils/LogHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/test/java/com/wengegroup/gateway/GatewayApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/test/java/com/uuuuuuuuuuuuuuu/gateway/GatewayApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/business.iml" beforeDir="false" afterPath="$PROJECT_DIR$/business/business.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/redis/src/main/java/com/uuuuuuuuuuuuuuu/redis/EnableMxdRedisAutoConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/forum.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,11 +53,16 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/common/mongondb/src/main/java/com/uuuuuuuuuuuuuuu/mongodb/config" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\web-java\forum\common\mongondb\src\main\java\com\uuuuuuuuuuuuuuu\mongodb\config" />
+    </key>
   </component>
   <component name="RunManager" selected="Spring Boot.AuthApplication">
     <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -168,6 +112,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MongondbApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="mongondb" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.uuuuuuuuuuuuuuu.mongodb.MongondbConfiguration" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.BlobApplication" />
@@ -175,6 +126,7 @@
       <item itemvalue="Spring Boot.CreditApplication" />
       <item itemvalue="Spring Boot.EurekaApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.MongondbApplication" />
     </list>
   </component>
   <component name="ServiceViewManager">
@@ -193,7 +145,7 @@
       <workItem from="1608887403102" duration="2016000" />
       <workItem from="1608890365407" duration="947000" />
       <workItem from="1609122662108" duration="802000" />
-      <workItem from="1609403242677" duration="2022000" />
+      <workItem from="1609403242677" duration="5664000" />
     </task>
     <task id="LOCAL-00001" summary="数据库配置修改">
       <created>1608891084755</created>
@@ -202,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608891084755</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="uuuuuuuuuuuuuuu">
+      <created>1609405364940</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1609405364940</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,17 +169,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="数据库配置修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="数据库配置修改" />
+    <MESSAGE value="uuuuuuuuuuuuuuu" />
+    <option name="LAST_COMMIT_MESSAGE" value="uuuuuuuuuuuuuuu" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Inspections" timestamp="1609407452465">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1609407452465" />
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609405307423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609405307423" />
-    <state x="560" y="113" key="CommitChangelistDialog2" timestamp="1609134703981">
+    <state x="710" y="81" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1609406870855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="560" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1609134703981" />
+    <state x="710" y="81" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609406870855" />
+    <state x="560" y="113" key="CommitChangelistDialog2" timestamp="1609406132302">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="560" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1609406132302" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1608889189990">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -249,21 +217,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1608890398503" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1608891086269">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1609405376934">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608891086269" />
-    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609405274663">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609405376934" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609727048229">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609405274663" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609727048229" />
     <state x="567" y="220" width="820" height="722" key="find.popup" timestamp="1608889623613">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="567" y="220" width="820" height="722" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608889623613" />
-    <state x="538" y="370" key="new project wizard" timestamp="1609403373885">
+    <state x="538" y="370" key="new project wizard" timestamp="1609406754697">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="538" y="370" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1609403373885" />
+    <state x="538" y="370" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1609406754697" />
   </component>
 </project>

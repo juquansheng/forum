@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/forum.iml" filepath="$PROJECT_DIR$/forum.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/model/model.iml" filepath="$PROJECT_DIR$/common/model/model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/mongondb/mongondb.iml" filepath="$PROJECT_DIR$/common/mongondb/mongondb.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/redis/redis.iml" filepath="$PROJECT_DIR$/common/redis/redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/util/util.iml" filepath="$PROJECT_DIR$/common/util/util.iml" />
     </modules>
