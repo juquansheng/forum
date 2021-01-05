@@ -10,10 +10,11 @@ import java.util.Map;
 
 @Service
 public class UserAuthenticationConverter extends DefaultUserAuthenticationConverter {
-    //都返回
+
     @Override
     public Map<String, ?> convertUserAuthentication(Authentication authentication) {
         Map<String, Object> response = new LinkedHashMap();
+        //都返回
         response.put("principal", authentication);
         /*response.put("user_name", authentication.getName());
         if (authentication.getAuthorities() != null && !authentication.getAuthorities().isEmpty()) {

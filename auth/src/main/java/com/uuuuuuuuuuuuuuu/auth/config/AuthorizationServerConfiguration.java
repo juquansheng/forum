@@ -15,6 +15,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.builders.ClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -77,6 +78,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Autowired
     private DataSource dataSource;
 
@@ -134,25 +136,29 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // 从数据库中读取客户端配置
-        //clients.withClientDetails(jdbcClientDetailsService());
-        clients
-                // 使用本地的方式存储, 为了简易方便测试
-                //.inMemory()
-                .withClientDetails(jdbcClientDetailsService())
-                // 客户端id
-                .withClient("mxd")
-                // 客户端密钥
-                .secret(new BCryptPasswordEncoder().encode("mxd"))
-                // 客户端可以请求的资源列表, id
-                .resourceIds("user-client")
-                // 该客户端允许的授权类型 authorization_code(授权码模式),password(密码模式),refresh_token(刷新令牌),implicit(简化模式),client_credentials(客户端模式)
-                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
-                // 允许的授权范围
-                .scopes("all")
-                // false 授权码模式时, 申请授权码时是跳转到授权页面, true 不跳转页面, 直接获取到授权码
-                .autoApprove(false)
-                //加上验证回调地址
-                .redirectUris("http://www.baidu.com");
+        ClientDetailsServiceBuilder<?> clientDetailsServiceBuilder = clients.withClientDetails(jdbcClientDetailsService());
+        //InMemoryClientDetailsServiceBuilder clientDetailsServiceBuilder = clients.inMemory();
+
+        if (ArrayUtil.isNotEmpty(securityProperties.getOauth().getClients())) {
+            for (OAuth2ClientProperties config : securityProperties.getOauth().getClients()) {
+                clientDetailsServiceBuilder.withClient(config.getClientId())
+                        .secret(passwordEncoder.encode(config.getClientSecret()))
+                        .accessTokenValiditySeconds(config.getAccessTokenValiditySeconds())
+                        .refreshTokenValiditySeconds(config.getRefreshTokenValiditySecond())
+                        // 该客户端允许的授权类型 authorization_code(授权码模式),password(密码模式),refresh_token(刷新令牌),implicit(简化模式),client_credentials(客户端模式)
+                        .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")//OAuth2支持的验证模式
+                        .redirectUris(config.getRedirectUri())
+                        // 允许的授权范围
+                        .scopes("all")
+                        // false 授权码模式时, 申请授权码时是跳转到授权页面, true 不跳转页面, 直接获取到授权码
+                        .autoApprove(false)
+                        // 客户端可以请求的资源列表, id
+                        .resourceIds("user-client")
+                        .autoApprove(config.getAutoApprove())//设置自动认证
+                        .scopes(config.getScope());
+            }
+        }
+
     }
 
     @Override
@@ -205,74 +211,4 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         ;*/
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*@Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(jwtTokenStore())
-                .accessTokenConverter(jwtAccessTokenConverter())
-                .userDetailsService(userDetailsService);
-    }
-
-    *//**
-     * 配置客户端一些信息
-     *
-     * @param clients
-     * @throws Exception
-     *//*
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        InMemoryClientDetailsServiceBuilder build = clients.inMemory();
-        if (ArrayUtil.isNotEmpty(securityProperties.getOauth().getClients())) {
-            for (OAuth2ClientProperties config : securityProperties.getOauth().getClients()) {
-                build.withClient(config.getClientId())
-                        .secret(passwordEncoder.encode(config.getClientSecret()))
-                        .accessTokenValiditySeconds(config.getAccessTokenValiditySeconds())
-                        .refreshTokenValiditySeconds(config.getRefreshTokenValiditySecond())
-                        .authorizedGrantTypes("refresh_token", "password", "authorization_code")//OAuth2支持的验证模式
-                        .redirectUris(config.getRedirectUri())
-                        .autoApprove(config.getAutoApprove())//设置自动认证
-                        .scopes(config.getScope());
-            }
-        }
-    }
-
-    *//**
-     * springSecurity 授权表达式，
-     *
-     * @param security
-     * @throws Exception
-     *//*
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("isAuthenticated()");
-    }
-
-
-    @Bean
-    public TokenStore jwtTokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter());
-    }
-
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
-        accessTokenConverter.setSigningKey(securityProperties.getOauth().getJwtSigningKey());
-        return accessTokenConverter;
-    }*/
 }
