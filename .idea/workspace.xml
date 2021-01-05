@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e75c791-692b-4fcf-a1cc-737b04b2c341" name="Default Changelist" comment="uuuuuuuuuuuuuuu">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_bson_4_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongo_java_driver_3_12_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_core_4_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_sync_4_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_mongodb_2_3_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_mongodb_3_0_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/mongondb/src/main/java/com/uuuuuuuuuuuuuuu/mongodb/config/ApplicationMongoDBConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/mongondb/src/main/java/com/uuuuuuuuuuuuuuu/mongodb/config/MongoConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/redis/src/main/java/com/uuuuuuuuuuuuuuu/redis/RedisAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="2e75c791-692b-4fcf-a1cc-737b04b2c341" name="Default Changelist" comment="Mongodb">
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/config/AuthorizationServerConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/config/MyUserDetailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/config/SecurityConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/config/UserAuthenticationConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/properties/OAuth2ClientProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/properties/OAuth2CoreConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/properties/OAuth2Properties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/properties/SecurityProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/business.iml" beforeDir="false" afterPath="$PROJECT_DIR$/business/business.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/redis/src/main/java/com/uuuuuuuuuuuuuuu/redis/EnableMxdRedisAutoConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/forum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/forum.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/AuthApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,14 +43,19 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/common/mongondb/src/main/java/com/uuuuuuuuuuuuuuu/mongodb/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/auth/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.uuuuuuuuuuuuuuu.auth.config" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\web-java\forum\auth\src\main\resources" />
+      <recent name="D:\web-java\forum\auth\src\main\java\com\uuuuuuuuuuuuuuu\auth" />
       <recent name="D:\web-java\forum\common\mongondb\src\main\java\com\uuuuuuuuuuuuuuu\mongodb\config" />
     </key>
   </component>
@@ -145,7 +140,10 @@
       <workItem from="1608887403102" duration="2016000" />
       <workItem from="1608890365407" duration="947000" />
       <workItem from="1609122662108" duration="802000" />
-      <workItem from="1609403242677" duration="5664000" />
+      <workItem from="1609403242677" duration="6298000" />
+      <workItem from="1609730843309" duration="2529000" />
+      <workItem from="1609755869587" duration="1334000" />
+      <workItem from="1609830101957" duration="7851000" />
     </task>
     <task id="LOCAL-00001" summary="数据库配置修改">
       <created>1608891084755</created>
@@ -161,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609405364940</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Mongodb">
+      <created>1609727073128</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1609727073128</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,7 +175,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="数据库配置修改" />
     <MESSAGE value="uuuuuuuuuuuuuuu" />
-    <option name="LAST_COMMIT_MESSAGE" value="uuuuuuuuuuuuuuu" />
+    <MESSAGE value="Mongodb" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mongodb" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Inspections" timestamp="1609407452465">
@@ -185,10 +191,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="710" y="81" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609406870855" />
-    <state x="560" y="113" key="CommitChangelistDialog2" timestamp="1609406132302">
+    <state x="560" y="113" key="CommitChangelistDialog2" timestamp="1609755940434">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="560" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1609406132302" />
+    <state x="560" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1609755940434" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1608889189990">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -217,21 +223,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1608890398503" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1609405376934">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1609727074933">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609405376934" />
-    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609727048229">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609727074933" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609840227334">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609727048229" />
-    <state x="567" y="220" width="820" height="722" key="find.popup" timestamp="1608889623613">
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609840227334" />
+    <state x="567" y="220" width="820" height="722" key="find.popup" timestamp="1609833143552">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="567" y="220" width="820" height="722" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608889623613" />
+    <state x="567" y="220" width="820" height="722" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1609833143552" />
     <state x="538" y="370" key="new project wizard" timestamp="1609406754697">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="538" y="370" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1609406754697" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1609833125710">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1609833125710" />
   </component>
 </project>
