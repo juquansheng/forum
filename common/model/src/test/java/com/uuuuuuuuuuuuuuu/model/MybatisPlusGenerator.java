@@ -30,7 +30,7 @@ public class MybatisPlusGenerator {
 
     private String driverName = "com.mysql.cj.jdbc.Driver";
     private String userName = "root";
-    //private String userPwd = "Mxd!@#";
+    //private String userPwd = "yuuki!@#";
     private String userPwd = "123456";
     // DAO的包路径
     private String entityPackage = "com.uuuuuuuuuuuuuuu.model";

@@ -69,7 +69,7 @@ spring:
         acknowledge-mode: manual
 # ==============================================================
   kafka:
-    bootstrap-servers: mxd-kakfa:9092
+    bootstrap-servers: yuuki-kakfa:9092
     listener:
       missing-topics-fatal: false
     producer:

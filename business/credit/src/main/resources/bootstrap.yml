@@ -57,7 +57,7 @@ management:
       exposure:
         include: "*"
   endpoint:
-    #    服务监控mxd-admin必须配置读取的日志位置
+    #    服务监控yuuki-admin必须配置读取的日志位置
     logfile:
       external_file: /home/exchange/business/credit/logs/stdout.log
     health:

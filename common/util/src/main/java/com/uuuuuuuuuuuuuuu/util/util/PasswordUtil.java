@@ -7,7 +7,7 @@ public class PasswordUtil {
     /**
      * 安全密码，作为盐值用于用户密码的加密
      */
-    public static final String SECURITY_KEY = "mxd";
+    public static final String SECURITY_KEY = "yuuki";
 
     /**
      * AES 加密

@@ -13,17 +13,17 @@ public class TokenUtils {
     //token设置过期时间
     public static final long TOKEN_EXPIRE_DATE=10*60*1000L;
     //token秘钥
-    public static final String TOKEN_SECRET = "mxd-token";
+    public static final String TOKEN_SECRET = "yuuki-token";
     //refreshToken设置过期时间
     public static final long REFRESH_TOKEN_EXPIRE_DATE=30*24*60*60*1000L;
     //refreshToken秘钥
-    public static final String REFRESH_TOKEN_SECRET = "mxd-refreshToken";
+    public static final String REFRESH_TOKEN_SECRET = "yuuki-refreshToken";
 
     //token在redis中的key
-    public static final String TOKEN_KEY = "mxd_token_key_";
+    public static final String TOKEN_KEY = "yuuki_token_key_";
 
     //refreshToken在redis中的key
-    public static final String REFRESH_TOKEN_KEY = "mxd_refreshToken_key_";
+    public static final String REFRESH_TOKEN_KEY = "yuuki_refreshToken_key_";
 
     public static String token (String username,String password){
 
