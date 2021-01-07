@@ -33,6 +33,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(bCryptPasswordEncoder());
+
+        // 在内存中创建用户,用于登录
+        /*auth.inMemoryAuthentication()
+                .withUser("user").password(bCryptPasswordEncoder().encode("123456")).roles("USER")
+                .and()
+                .withUser("admin").password(bCryptPasswordEncoder().encode("654321")).roles("ADMIN");*/
     }
 
     @Override
@@ -47,9 +53,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     }
 
-
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    public static void main(String[] args) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encode = bCryptPasswordEncoder.encode("123456");
+        System.out.println(encode);
     }
 }

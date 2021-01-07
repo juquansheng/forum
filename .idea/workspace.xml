@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2e75c791-692b-4fcf-a1cc-737b04b2c341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/config/AuthorizationServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/config/AuthorizationServerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/uuuuuuuuuuuuuuu/auth/config/SecurityConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +68,20 @@
       <recent name="D:\web-java\forum\common\mongondb\src\main\java\com\uuuuuuuuuuuuuuu\mongodb\config" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthApplication">
+  <component name="RunManager" selected="Application.SecurityConfiguration">
+    <configuration name="SecurityConfiguration" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.uuuuuuuuuuuuuuu.auth.config.SecurityConfiguration" />
+      <module name="auth" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.uuuuuuuuuuuuuuu.auth.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="auth" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.uuuuuuuuuuuuuuu.auth.AuthApplication" />
@@ -123,7 +136,13 @@
       <item itemvalue="Spring Boot.CreditApplication" />
       <item itemvalue="Spring Boot.EurekaApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Application.SecurityConfiguration" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SecurityConfiguration" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="showServicesTree" value="false" />
@@ -145,7 +164,7 @@
       <workItem from="1609730843309" duration="2529000" />
       <workItem from="1609755869587" duration="1334000" />
       <workItem from="1609830101957" duration="15185000" />
-      <workItem from="1610004715609" duration="6852000" />
+      <workItem from="1610004715609" duration="7371000" />
     </task>
     <task id="LOCAL-00001" summary="数据库配置修改">
       <created>1608891084755</created>
@@ -203,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610010419618</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="oauth2">
+      <created>1610011868161</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1610011868161</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,10 +259,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="796" y="444" width="920" height="596" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1610008897608" />
-    <state x="560" y="113" key="CommitChangelistDialog2" timestamp="1610010418271">
+    <state x="560" y="113" key="CommitChangelistDialog2" timestamp="1610011866737">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="560" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610010418271" />
+    <state x="560" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610011866737" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1608889189990">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -297,14 +323,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1608890398503" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1610010420892">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1610011869756">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610010420892" />
-    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610011855002">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610011869756" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610012370816">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610011855002" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610012370816" />
     <state x="567" y="220" width="820" height="722" key="find.popup" timestamp="1610010105976">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
