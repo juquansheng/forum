@@ -7,6 +7,7 @@ import com.uuuuuuuuuuuuuuu.auth.properties.OAuth2ClientProperties;
 import com.uuuuuuuuuuuuuuu.auth.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -83,6 +84,16 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
+    /**
+     * DataSource 配置
+     * @return
+     */
+    /*@ConfigurationProperties(prefix = "spring.security.datasource")
+    @Bean
+    public DataSource dataSource() {
+        return new DruidDataSource();
+    }*/
 
     @Bean
     @Primary
