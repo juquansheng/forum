@@ -64,10 +64,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private AuthenticationManager authenticationManager;
 
     /**
-     * 授权码模式, 需要
+     * 授权码模式, (存在会导致druidConfigYML配置加载不上，原因未知)
      */
-    @Autowired
-    private AuthorizationCodeServices authorizationCodeServices;
+    /*@Autowired
+    private AuthorizationCodeServices authorizationCodeServices;*/
 
     /**
      * 用户详情服务
@@ -104,7 +104,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         datasource.setUrl(druidConfigYML.getUrl());
         datasource.setUsername(druidConfigYML.getUsername());
         datasource.setPassword(druidConfigYML.getPassword());
-        datasource.setDriverClassName(druidConfigYML.getDriverClassName());
+        //datasource.setDriverClassName(druidConfigYML.getDriverClassName());
         datasource.setInitialSize(5);
         datasource.setMinIdle(5);
         datasource.setMaxActive(20);

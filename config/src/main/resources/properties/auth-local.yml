@@ -104,7 +104,7 @@ spring:
       
 # mybatis-plus
 mybatis-plus:
-  mapper-locations: classpath*:/mapper/*.xml,classpath*:com/gitee/sunchenbin/mybatis/actable/mapping/*/*.xml
+  mapper-locations: classpath*:/mapper/*.xml,classpath*:com/gitee/juquansheng/mybatis/actable/mapping/*/*.xml
   type-enums-package: com.uuuuuuuuuuuuuuu.model.enums
   type-aliases-package: com.uuuuuuuuuuuuuuu.model.entity
   configuration:
