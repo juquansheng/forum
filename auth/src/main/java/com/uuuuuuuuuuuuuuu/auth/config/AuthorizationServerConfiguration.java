@@ -99,7 +99,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Primary
     public DataSource dataSource() {
         // 配置数据源
-        log.info("---初始化AuthorizationServerConfiguration数据源------druidConfigYML"+druidConfigYML);
+        log.info("---初始化AuthorizationServerConfiguration数据源------druidConfigYML:"+druidConfigYML);
         DruidDataSource datasource = new DruidDataSource();
         datasource.setUrl(druidConfigYML.getUrl());
         datasource.setUsername(druidConfigYML.getUsername());
