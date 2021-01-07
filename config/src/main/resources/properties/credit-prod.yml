@@ -86,8 +86,8 @@ spring:
 # mybatis-plus
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml,classpath*:com/gitee/sunchenbin/mybatis/actable/mapping/*/*.xml
-  type-enums-package: com.wengegroup.model.enums
-  type-aliases-package: com.wengegroup.model.entity
+  type-enums-package: com.uuuuuuuuuuuuuuu.model.enums
+  type-aliases-package: com.uuuuuuuuuuuuuuu.model.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 # ==============================================================

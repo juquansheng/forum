@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.uuuuuuuuuuuuuuu.redis.EnableMxdRedisAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.uuuuuuuuuuuuuuu.redis.RedisAutoConfiguration

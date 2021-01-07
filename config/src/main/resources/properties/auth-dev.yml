@@ -1,4 +1,23 @@
 spring:
+  security:
+    oauth:
+      jwtSigningKey: security
+      clients[0]:
+        clientId: test1
+        clientSecret: test1
+        redirectUri: http://127.0.0.1:8081/client1/login
+        autoApprove: true
+      clients[1]:
+        clientId: test2
+        clientSecret: test2
+        redirectUri: http://127.0.0.1:8082/client2/login
+        autoApprove: true
+    datasource:
+      url: jdbc:mysql://localhost:3306/oauth2?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
   jackson:
     serialization:
       write-dates-as-timestamps: true
@@ -84,8 +103,8 @@ spring:
 # mybatis-plus
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml,classpath*:com/gitee/sunchenbin/mybatis/actable/mapping/*/*.xml
-  type-enums-package: com.wengegroup.model.enums
-  type-aliases-package: com.wengegroup.model.entity
+  type-enums-package: com.uuuuuuuuuuuuuuu.model.enums
+  type-aliases-package: com.uuuuuuuuuuuuuuu.model.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 # ==============================================================

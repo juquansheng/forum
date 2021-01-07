@@ -33,9 +33,9 @@ public class MybatisPlusGenerator {
     //private String userPwd = "Mxd!@#";
     private String userPwd = "123456";
     // DAO的包路径
-    private String entityPackage = "com.wengegroup.model";
-    private String mapperPackage = "com.wengegroup.model";
-    private String mapperXmlPackage = "com.wengegroup.model.mapper";
+    private String entityPackage = "com.uuuuuuuuuuuuuuu.model";
+    private String mapperPackage = "com.uuuuuuuuuuuuuuu.model";
+    private String mapperXmlPackage = "com.uuuuuuuuuuuuuuu.model.mapper";
     // 待生成的表名，注意是覆盖更新
     private static String[] tableNames;
     // "galaxy","earth","country_config","city_area","administrative_conifg","grid_category","online_grid"

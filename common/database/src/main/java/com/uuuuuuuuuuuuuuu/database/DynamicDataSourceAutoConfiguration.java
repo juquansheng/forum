@@ -23,6 +23,6 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * 动态数据源切换配置
  */
-@ComponentScan(basePackages = {"com.wengegroup.datasource"})
+@ComponentScan(basePackages = {"com.uuuuuuuuuuuuuuu.datasource"})
 public class DynamicDataSourceAutoConfiguration {
 }

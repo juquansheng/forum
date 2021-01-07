@@ -1,9 +1,11 @@
 package com.uuuuuuuuuuuuuuu.auth.config;
 
 import cn.hutool.core.util.ArrayUtil;
-
+import com.alibaba.druid.pool.DruidDataSource;
+import com.uuuuuuuuuuuuuuu.auth.properties.DruidConfigYML;
 import com.uuuuuuuuuuuuuuu.auth.properties.OAuth2ClientProperties;
 import com.uuuuuuuuuuuuuuu.auth.properties.SecurityProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +15,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.builders.ClientDetailsServiceBuilder;
-import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -25,18 +25,19 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 /**
  */
+@Slf4j
 @Configuration
 @EnableAuthorizationServer
 @Order(2)
@@ -77,11 +78,40 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private SecurityProperties securityProperties;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private DruidConfigYML druidConfigYML;
 
     @Autowired
-    private DataSource dataSource;
+    private PasswordEncoder passwordEncoder;
 
+
+    @Bean
+    @Primary
+    public DataSource dataSource() {
+        // 配置数据源
+        log.info("---初始化AuthorizationServerConfiguration数据源------druidConfigYML"+druidConfigYML);
+        DruidDataSource datasource = new DruidDataSource();
+        datasource.setUrl(druidConfigYML.getUrl());
+        datasource.setUsername(druidConfigYML.getUsername());
+        datasource.setPassword(druidConfigYML.getPassword());
+        datasource.setDriverClassName(druidConfigYML.getDriverClassName());
+        datasource.setInitialSize(5);
+        datasource.setMinIdle(5);
+        datasource.setMaxActive(20);
+        datasource.setDbType(druidConfigYML.getType());
+        datasource.setMaxWait(60000);
+        datasource.setTimeBetweenEvictionRunsMillis(60000);
+        datasource.setMinEvictableIdleTimeMillis(300000);
+        datasource.setValidationQuery("SELECT 1 FROM DUAL");
+        datasource.setTestWhileIdle(true);
+        datasource.setTestOnBorrow(false);
+        datasource.setTestOnReturn(false);
+        try {
+            datasource.setFilters(druidConfigYML.getFilters());
+        } catch (SQLException e) {
+            log.error("druid configuration initialization filter", e);
+        }
+        return datasource;
+    }
 
     /**
      * token仓库
@@ -96,19 +126,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Bean
     public ClientDetailsService jdbcClientDetailsService() {
         // 基于JDBC实现，需要实现在数据库配置客户端信息以及密码加密方式
-        JdbcClientDetailsService detailsService = new JdbcClientDetailsService(dataSource);
+        JdbcClientDetailsService detailsService = new JdbcClientDetailsService(dataSource());
         detailsService.setPasswordEncoder(passwordEncoder);
         return detailsService;
     }
 
-    /**
-     *
-     */
-    @Bean
-    public DefaultAccessTokenConverter accessTokenConverter() {
-        DefaultAccessTokenConverter converter = new DefaultAccessTokenConverter();
-        return converter;
-    }
     /**
      * 管理令牌的服务
      *
@@ -130,6 +152,15 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         // 刷新令牌时间
         services.setRefreshTokenValiditySeconds(60*60*24*15);
         return services;
+    }
+
+    /**
+     * 授权码服务
+     */
+    @Bean
+    @Primary
+    public AuthorizationCodeServices authorizationCodeServices() {
+        return new JdbcAuthorizationCodeServices(dataSource());
     }
 
 
@@ -167,7 +198,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 // 认证管理器
                 .authenticationManager(authenticationManager)
                 // 授权码管理器
-                .authorizationCodeServices(authorizationCodeServices)
+                .authorizationCodeServices(authorizationCodeServices())
                 // 令牌管理器
                 .tokenServices(myAuthorizationServerTokenServices())
                 // 必须注入userDetailsService否则根据refresh_token无法加载用户信息
@@ -198,17 +229,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .tokenKeyAccess("permitAll()")
                 //isAuthenticated():排除anonymous   isFullyAuthenticated():排除anonymous以及remember-me
                 .checkTokenAccess("isAuthenticated()")
+                //oauth/check_token公开
+                //.checkTokenAccess("permitAll()")
                 //允许表单认证
                 .allowFormAuthenticationForClients();
-
-        /*security
-                //oauth/token_key是公开
-                .tokenKeyAccess("permitAll()")
-                //oauth/check_token公开
-                .checkTokenAccess("permitAll()")
-                //表单认证（申请令牌）
-                .allowFormAuthenticationForClients()
-        ;*/
     }
 
 }
