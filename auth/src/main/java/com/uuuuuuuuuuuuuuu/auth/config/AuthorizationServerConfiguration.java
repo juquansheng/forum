@@ -168,9 +168,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // 从数据库中读取客户端配置
         ClientDetailsServiceBuilder<?> clientDetailsServiceBuilder = clients.withClientDetails(jdbcClientDetailsService());
+        //内存
         //InMemoryClientDetailsServiceBuilder clientDetailsServiceBuilder = clients.inMemory();
-
-        if (ArrayUtil.isNotEmpty(securityProperties.getOauth().getClients())) {
+        /*if (ArrayUtil.isNotEmpty(securityProperties.getOauth().getClients())) {
             for (OAuth2ClientProperties config : securityProperties.getOauth().getClients()) {
                 clientDetailsServiceBuilder.withClient(config.getClientId())
                         .secret(passwordEncoder.encode(config.getClientSecret()))
@@ -188,7 +188,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                         .autoApprove(config.getAutoApprove())//设置自动认证
                         .scopes(config.getScope());
             }
-        }
+        }*/
 
     }
 
