@@ -18,6 +18,7 @@
 
     <modules>
         <module>credit</module>
+        <module>blob</module>
     </modules>
 
     <dependencies>

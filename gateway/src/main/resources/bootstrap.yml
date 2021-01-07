@@ -48,7 +48,7 @@ eureka:
 #日志级别
 logging:
   level:
-    com.mdtsk.yuuki.gateway: trace
+    com.uuuuuuuuuuuuuuu.gateway: trace
 
 #监控端点
 management:

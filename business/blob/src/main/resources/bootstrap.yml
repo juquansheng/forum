@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: blob
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config
+      #      分支
+      label: master
+      #      环境
+      profile: ${SPRING.PROFILES.ACTIVE:local}
+      #      应用名称
+      name: credit
+      username: user
+      password: 123
+  datasource:
+    dynamic:
+      primary: master
+      strict: true
+      seata: false
+  security:
+    user:
+      name: user
+      password: ${CONFIG_SERVER_PASSWORD:123}
+
+server:
+  port: 9002
+  servlet:
+    context-path: /
+
+eureka:
+  instance:
+    hostname: ${REGISTER-HOST:localhost}
+    prefer-ip-address: true
+  server:
+    port: 8761
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${eureka.server.port}/eureka/
+
+
+
+
+logging:
+  level:
+    io:
+      swagger:
+        models:
+          parameters:
+            AbstractSerializableParameter: error
+
+#监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    #    服务监控yuuki-admin必须配置读取的日志位置
+    logfile:
+      external_file: /home/exchange/business/credit/logs/stdout.log
+    health:
+      show-details: always

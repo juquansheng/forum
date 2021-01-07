@@ -20,6 +20,8 @@
         <module>model</module>
         <module>redis</module>
         <module>util</module>
+        <module>database</module>
+        <module>mongondb</module>
     </modules>
 
 </project>
