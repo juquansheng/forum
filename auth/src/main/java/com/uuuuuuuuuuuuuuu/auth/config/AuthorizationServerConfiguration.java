@@ -104,7 +104,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         datasource.setUrl(druidConfigYML.getUrl());
         datasource.setUsername(druidConfigYML.getUsername());
         datasource.setPassword(druidConfigYML.getPassword());
-        //datasource.setDriverClassName(druidConfigYML.getDriverClassName());
+        datasource.setDriverClassName(druidConfigYML.getDriverClassName());
         datasource.setInitialSize(5);
         datasource.setMinIdle(5);
         datasource.setMaxActive(20);

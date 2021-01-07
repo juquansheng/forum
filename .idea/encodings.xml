@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/blob" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/blob/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/blob/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/credit" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/credit/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/database" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/database/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/database/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/model" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/mongondb" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/mongondb/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/mongondb/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/redis" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/util" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
   </component>
 </project>
