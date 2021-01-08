@@ -21,7 +21,7 @@
         <module>redis</module>
         <module>util</module>
         <module>database</module>
-        <module>mongondb</module>
+        <module>mongodb</module>
     </modules>
 
 </project>

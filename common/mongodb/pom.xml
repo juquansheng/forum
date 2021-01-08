@@ -10,9 +10,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>mongondb</artifactId>
+    <artifactId>mongodb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mongondb</name>
+    <name>mongodb</name>
     <description>Demo project for Spring Boot</description>
 
 

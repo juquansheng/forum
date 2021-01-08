@@ -61,7 +61,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private AuthenticationManager authenticationManager;
 
     /**
-     * 授权码模式, (存在会导致druidConfigYML配置加载不上，原因未知)
+     * 授权码模式, (存在会导致druidConfigYML配置加载不上，原因未知,应该是其他有注入失败的，则配置也会加载失败)
      */
     /*@Autowired
     private AuthorizationCodeServices authorizationCodeServices;*/

@@ -13,9 +13,6 @@
     <name>model</name>
     <description>公用数据模块</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
     <dependencies>
         <!--        mybatis-plus-->

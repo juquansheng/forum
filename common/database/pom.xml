@@ -13,9 +13,6 @@
     <name>database</name>
     <description>数据库模块</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
     <dependencies>
         <dependency>
