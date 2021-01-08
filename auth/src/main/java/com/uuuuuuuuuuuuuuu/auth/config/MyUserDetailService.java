@@ -21,7 +21,9 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
+        if (username==null || !username.equals("user")) {
+            throw new RuntimeException("用户名[" + username + "]账号不存在！");
+        }
         // 数据库存储密码为加密后的密文（明文为123456）
         String password = passwordEncoder.encode("123456");
 
