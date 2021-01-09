@@ -2,6 +2,7 @@
 package com.uuuuuuuuuuuuuuu.auth.config;
 
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.uuuuuuuuuuuuuuu.auth.service.UserAccountService;
 import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
@@ -24,6 +25,7 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserAccountService userAccountService;
 
     @Override
+    @DS("slave")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserAccount account = userAccountService.getUserByAccount(username);
         if (account==null) {
@@ -32,6 +34,7 @@ public class MyUserDetailsService implements UserDetailsService {
         UserDto userDto = new UserDto();
         userDto.setPkId(account.getPkId());
         userDto.setUsername(username);
+        userDto.setIsEnabled(true);
         /*userDto.setMobile(account.getCurrentMdtskMobNumber());
         userDto.setEmail(account.getCurrentMdtskEmailNumber());
         userDto.setPassword(account.getCurrentMdtskCipherCode());
@@ -40,7 +43,7 @@ public class MyUserDetailsService implements UserDetailsService {
         userDto.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         return userDto;
     }
-
+    @DS("slave")
     public UserDetails loadUserByPhone(String phone) throws UsernameNotFoundException {
         UserAccount account = userAccountService.getUserByPhone(phone);
         if (account==null) {
@@ -57,7 +60,7 @@ public class MyUserDetailsService implements UserDetailsService {
         userDto.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         return userDto;
     }
-
+    @DS("slave")
     public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
         UserAccount account = userAccountService.getUserByEmail(email);
         if (account==null) {
