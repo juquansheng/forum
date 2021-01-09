@@ -12,12 +12,6 @@ spring:
         clientSecret: test2
         redirectUri: http://127.0.0.1:8082/client2/login
         autoApprove: true
-    datasource:
-      url: jdbc:mysql://localhost:3306/oauth2?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      username: root
-      password: 123456
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      type: com.alibaba.druid.pool.DruidDataSource
   jackson:
     serialization:
       write-dates-as-timestamps: true
@@ -50,6 +44,13 @@ spring:
 
         slave:
           url: jdbc:mysql://localhost:3306/forum?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+
+        oauth2:
+          url: jdbc:mysql://localhost:3306/oauth2?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&serverTimezone=UTC
           username: root
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver

@@ -1,8 +1,7 @@
 package com.uuuuuuuuuuuuuuu.auth.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import com.uuuuuuuuuuuuuuu.auth.properties.DruidConfigYML;
-import com.uuuuuuuuuuuuuuu.auth.properties.SecurityProperties;
+
+import com.baomidou.dynamic.datasource.annotation.DS;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -73,14 +72,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private UserDetailsService userDetailsService;
 
     @Autowired
-    private SecurityProperties securityProperties;
-
-    @Autowired
-    private DruidConfigYML druidConfigYML;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private DataSource dataSource;
 
     /**
      * DataSource 配置
@@ -92,7 +87,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return new DruidDataSource();
     }*/
 
-    @Bean
+    /*@Bean("oauth2DateSource")
     @Primary
     public DataSource dataSource() {
         // 配置数据源
@@ -119,7 +114,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
             log.error("druid configuration initialization filter", e);
         }
         return datasource;
-    }
+    }*/
 
     /**
      * token仓库
@@ -132,9 +127,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     }
 
     @Bean
+    @DS("oauth2")
     public ClientDetailsService jdbcClientDetailsService() {
         // 基于JDBC实现，需要实现在数据库配置客户端信息以及密码加密方式
-        JdbcClientDetailsService detailsService = new JdbcClientDetailsService(dataSource());
+        JdbcClientDetailsService detailsService = new JdbcClientDetailsService(dataSource);
         detailsService.setPasswordEncoder(passwordEncoder);
         return detailsService;
     }
@@ -167,8 +163,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
      */
     @Bean
     @Primary
+    @DS("oauth2")
     public AuthorizationCodeServices authorizationCodeServices() {
-        return new JdbcAuthorizationCodeServices(dataSource());
+        return new JdbcAuthorizationCodeServices(dataSource);
     }
 
 

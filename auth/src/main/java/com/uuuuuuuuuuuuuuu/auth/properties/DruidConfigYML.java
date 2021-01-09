@@ -1,11 +1,14 @@
+/*
 package com.uuuuuuuuuuuuuuu.auth.properties;
 
+*/
 /**
  * description: DruidConfig
  * date: 2021/1/6 14:54
  * author: juquansheng
  * version: 1.0 <br>
- */
+ *//*
+
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -36,3 +39,4 @@ public class DruidConfigYML {
 
 
 }
+*/

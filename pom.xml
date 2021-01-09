@@ -64,7 +64,6 @@
         <mysql.connector.java.version>8.0.19</mysql.connector.java.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <beet1.version>3.1.8.RELEASE</beet1.version>
-        <mybatis-enhance-actable.version>1.2.1.RELEASE</mybatis-enhance-actable.version>
         <mongo.version>3.12.7</mongo.version>
     </properties>
 
