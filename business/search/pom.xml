@@ -4,25 +4,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.uuuuuuuuuuuuuuu</groupId>
-        <artifactId>common</artifactId>
+        <artifactId>business</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>util</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>util</name>
-    <description>util</description>
+    <artifactId>search</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>search</name>
+    <description>Demo project for Spring Boot</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.uuuuuuuuuuuuuuu</groupId>
-            <artifactId>model</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+
+
+
+
 
 </project>

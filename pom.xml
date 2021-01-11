@@ -65,6 +65,8 @@
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <beet1.version>3.1.8.RELEASE</beet1.version>
         <mongo.version>3.12.7</mongo.version>
+
+        <elasticsearch.version>7.8.0</elasticsearch.version>
     </properties>
 
     <modules>
