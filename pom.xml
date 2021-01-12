@@ -31,7 +31,12 @@
         <docker.password>Harbor12345</docker.password>
         <docker.plugin.version>0.32.0</docker.plugin.version>
 
-        <swagger.version>2.9.2</swagger.version>
+        <swagger.version>2.6.1</swagger.version>
+        <swagger.ui.version>2.6.1</swagger.ui.version>
+        <!--<swagger.version>2.9.2</swagger.version>-->
+        <!--<springfox-swagger.version>2.9.2</springfox-swagger.version>-->
+        <swagger.starter.version>3.0.0</swagger.starter.version>
+
         <skipTests>true</skipTests>
         <dynamic-datasource.version>3.0.0</dynamic-datasource.version>
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
@@ -62,7 +67,7 @@
         <spring-cloud-alibaba-seata.version>2.1.0.RELEASE</spring-cloud-alibaba-seata.version>
         <seata.version>1.0.0</seata.version>
         <mysql.connector.java.version>8.0.19</mysql.connector.java.version>
-        <springfox-swagger.version>2.9.2</springfox-swagger.version>
+
         <beet1.version>3.1.8.RELEASE</beet1.version>
         <mongo.version>3.12.7</mongo.version>
 

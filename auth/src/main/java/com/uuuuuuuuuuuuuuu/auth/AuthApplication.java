@@ -7,9 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
-
+@EnableFeignClients("com.uuuuuuuuuuuuuuu.feign.feign")
 @SpringBootApplication(exclude = {DruidDataSourceAutoConfigure.class})
 @MapperScan(basePackages = {"com.uuuuuuuuuuuuuuu.auth.mapper"})
 @EnableAuthorizationServer
