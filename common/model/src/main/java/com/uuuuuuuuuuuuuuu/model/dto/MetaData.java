@@ -1,4 +1,4 @@
-package com.uuuuuuuuuuuuuuu.util.util;
+package com.uuuuuuuuuuuuuuu.model.dto;
 
 import org.elasticsearch.common.unit.ByteSizeUnit;
 
@@ -7,15 +7,45 @@ import java.util.concurrent.TimeUnit;
 /**
  * 元数据载体类
  */
-public class MetaData{
-    public MetaData(String indexname, String indextype) {
-        this.indexname = indexname;
-        this.indextype = indextype;
-    }
+public class MetaData {
+
+    boolean alias;
+    String[] aliasIndex;
+    String writeIndex;
+    boolean rollover;
+    long rolloverMaxIndexAgeCondition;
+    TimeUnit rolloverMaxIndexAgeTimeUnit;
+    long rolloverMaxIndexDocsCondition;
+    long rolloverMaxIndexSizeCondition;
+    ByteSizeUnit rolloverMaxIndexSizeByteSizeUnit;
+
     String indexname = "";
     String indextype = "";
 
     String[] searchIndexNames;
+
+    int number_of_shards;
+    int number_of_replicas;
+
+    boolean printLog = false;
+
+    public MetaData(String indexname, String indextype) {
+        this.indexname = indexname;
+        this.indextype = indextype;
+    }
+
+    public MetaData(String indexname, String indextype, int number_of_shards, int number_of_replicas) {
+        this.indexname = indexname;
+        this.indextype = indextype;
+        this.number_of_shards = number_of_shards;
+        this.number_of_replicas = number_of_replicas;
+    }
+
+    public MetaData(int number_of_shards, int number_of_replicas) {
+        this.number_of_shards = number_of_shards;
+        this.number_of_replicas = number_of_replicas;
+    }
+
 
     public String[] getSearchIndexNames() {
         return searchIndexNames;
@@ -24,8 +54,6 @@ public class MetaData{
     public void setSearchIndexNames(String[] searchIndexNames) {
         this.searchIndexNames = searchIndexNames;
     }
-
-    boolean printLog = false;
 
     public boolean isPrintLog() {
         return printLog;
@@ -38,18 +66,18 @@ public class MetaData{
     public String getIndexname() {
         return indexname;
     }
+
     public void setIndexname(String indexname) {
         this.indexname = indexname;
     }
+
     public String getIndextype() {
         return indextype;
     }
+
     public void setIndextype(String indextype) {
         this.indextype = indextype;
     }
-
-    int number_of_shards;
-    int number_of_replicas;
 
     public int getNumber_of_shards() {
         return number_of_shards;
@@ -67,27 +95,9 @@ public class MetaData{
         this.number_of_replicas = number_of_replicas;
     }
 
-    public MetaData(String indexname, String indextype, int number_of_shards, int number_of_replicas) {
-        this.indexname = indexname;
-        this.indextype = indextype;
-        this.number_of_shards = number_of_shards;
-        this.number_of_replicas = number_of_replicas;
-    }
 
-    public MetaData(int number_of_shards, int number_of_replicas) {
-        this.number_of_shards = number_of_shards;
-        this.number_of_replicas = number_of_replicas;
-    }
 
-    boolean alias;
-    String[] aliasIndex;
-    String writeIndex;
-    boolean rollover;
-    long rolloverMaxIndexAgeCondition;
-    TimeUnit rolloverMaxIndexAgeTimeUnit;
-    long rolloverMaxIndexDocsCondition;
-    long rolloverMaxIndexSizeCondition;
-    ByteSizeUnit rolloverMaxIndexSizeByteSizeUnit;
+
 
 
     public boolean isAlias() {

@@ -1,10 +1,10 @@
 package com.uuuuuuuuuuuuuuu.search.service.impl;
 
 
+import com.uuuuuuuuuuuuuuu.model.dto.MetaData;
 import com.uuuuuuuuuuuuuuu.search.service.ElasticsearchIndex;
 import com.uuuuuuuuuuuuuuu.util.util.IndexTools;
 import com.uuuuuuuuuuuuuuu.util.util.MappingData;
-import com.uuuuuuuuuuuuuuu.util.util.MetaData;
 import com.uuuuuuuuuuuuuuu.util.util.Tools;
 import org.elasticsearch.action.admin.indices.alias.Alias;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequest;
@@ -35,8 +35,10 @@ import java.util.stream.Stream;
 
 @Component
 public class ElasticsearchIndexImpl<T> implements ElasticsearchIndex<T> {
+
     @Autowired
     RestHighLevelClient client;
+
     private static final String NESTED = "nested";
 
     @Override

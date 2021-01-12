@@ -1,6 +1,7 @@
 package com.uuuuuuuuuuuuuuu.util.util;
 
 
+import com.uuuuuuuuuuuuuuu.model.constant.ESConstant;
 import com.uuuuuuuuuuuuuuu.model.enums.DataType;
 import com.uuuuuuuuuuuuuuu.util.annotation.ESID;
 import com.uuuuuuuuuuuuuuu.util.annotation.ESMapping;
@@ -114,18 +115,18 @@ public class Tools {
     }
 
     public static <T> List<List<T>> splitList(List<T> oriList,boolean isParallel){
-        if(oriList.size() <=  Constant.BULK_COUNT){
+        if(oriList.size() <=  ESConstant.BULK_COUNT){
             List<List<T>> splitList = new ArrayList<>();
             splitList.add(oriList);
             return splitList;
         }
-        int limit = (oriList.size() + Constant.BULK_COUNT - 1) / Constant.BULK_COUNT;
+        int limit = (oriList.size() + ESConstant.BULK_COUNT - 1) / ESConstant.BULK_COUNT;
         if(isParallel){
-            return Stream.iterate(0, n -> n + 1).limit(limit).parallel().map(a -> oriList.stream().skip(a * Constant.BULK_COUNT).limit(Constant.BULK_COUNT).parallel().collect(Collectors.toList())).collect(Collectors.toList());
+            return Stream.iterate(0, n -> n + 1).limit(limit).parallel().map(a -> oriList.stream().skip(a * ESConstant.BULK_COUNT).limit(ESConstant.BULK_COUNT).parallel().collect(Collectors.toList())).collect(Collectors.toList());
         }else{
             final List<List<T>> splitList = new ArrayList<>();
             Stream.iterate(0, n -> n + 1).limit(limit).forEach(i -> {
-                splitList.add(oriList.stream().skip(i * Constant.BULK_COUNT ).limit(Constant.BULK_COUNT ).collect(Collectors.toList()));
+                splitList.add(oriList.stream().skip(i * ESConstant.BULK_COUNT ).limit(ESConstant.BULK_COUNT ).collect(Collectors.toList()));
             });
             return splitList;
         }

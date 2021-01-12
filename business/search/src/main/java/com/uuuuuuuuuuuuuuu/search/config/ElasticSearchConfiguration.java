@@ -1,6 +1,6 @@
 package com.uuuuuuuuuuuuuuu.search.config;
 
-import com.uuuuuuuuuuuuuuu.util.util.Constant;
+import com.uuuuuuuuuuuuuuu.model.constant.ESConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -11,12 +11,10 @@ import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.util.StringUtils;
 
@@ -47,6 +45,7 @@ public class ElasticSearchConfiguration  {
 //        close();
 //    }
 
+    @Primary
     @Bean(destroyMethod="close")//这个close是调用RestHighLevelClient中的close
     @Scope("singleton")
     public RestHighLevelClient createInstance() {
@@ -55,7 +54,7 @@ public class ElasticSearchConfiguration  {
         String password = elasticsearchProperties.getPassword();
         try {
             if(StringUtils.isEmpty(host)){
-                host = Constant.DEFAULT_ES_HOST;
+                host = ESConstant.DEFAULT_ES_HOST;
             }
             String[] hosts = host.split(",");
             HttpHost[] httpHosts = new HttpHost[hosts.length];

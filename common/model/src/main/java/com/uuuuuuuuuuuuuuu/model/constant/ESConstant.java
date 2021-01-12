@@ -1,6 +1,6 @@
-package com.uuuuuuuuuuuuuuu.util.util;
+package com.uuuuuuuuuuuuuuu.model.constant;
 
-public class Constant {
+public class ESConstant {
     //非分页，默认的查询条数
     public static int DEFALT_PAGE_SIZE = 200;
     //搜索建议默认条数

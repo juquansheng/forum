@@ -1,6 +1,8 @@
 package com.uuuuuuuuuuuuuuu.search.service.impl;
 
 
+import com.uuuuuuuuuuuuuuu.model.constant.ESConstant;
+import com.uuuuuuuuuuuuuuu.model.dto.MetaData;
 import com.uuuuuuuuuuuuuuu.model.enums.AggsType;
 import com.uuuuuuuuuuuuuuu.model.enums.DataType;
 import com.uuuuuuuuuuuuuuu.model.enums.SqlFormat;
@@ -373,7 +375,7 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(queryBuilder);
         searchSourceBuilder.from(0);
-        searchSourceBuilder.size(Constant.DEFALT_PAGE_SIZE);
+        searchSourceBuilder.size(ESConstant.DEFALT_PAGE_SIZE);
         searchRequest.source(searchSourceBuilder);
         if (metaData.isPrintLog()) {
             logger.info(searchSourceBuilder.toString());
@@ -443,7 +445,7 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
     public String queryBySQL(String sql, SqlFormat sqlFormat) throws Exception {
         String host = elasticsearchProperties.getHost();
         if(StringUtils.isEmpty(host)){
-            host = Constant.DEFAULT_ES_HOST;
+            host = ESConstant.DEFAULT_ES_HOST;
         }
         String ipport = "";
         String[] hosts = host.split(",");
@@ -572,15 +574,15 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
         aggregation.order(BucketOrder.aggregation(me, false));
 //        aggregation.order(BucketOrder.key(false));
         if (AggsType.count == aggsType) {
-            aggregation.subAggregation(AggregationBuilders.count(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+            aggregation.subAggregation(AggregationBuilders.count(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         } else if (AggsType.min == aggsType) {
-            aggregation.subAggregation(AggregationBuilders.min(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+            aggregation.subAggregation(AggregationBuilders.min(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         } else if (AggsType.max == aggsType) {
-            aggregation.subAggregation(AggregationBuilders.max(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+            aggregation.subAggregation(AggregationBuilders.max(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         } else if (AggsType.sum == aggsType) {
-            aggregation.subAggregation(AggregationBuilders.sum(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+            aggregation.subAggregation(AggregationBuilders.sum(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         } else if (AggsType.avg == aggsType) {
-            aggregation.subAggregation(AggregationBuilders.avg(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+            aggregation.subAggregation(AggregationBuilders.avg(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         }
         if (queryBuilder != null) {
             searchSourceBuilder.query(queryBuilder);
@@ -668,24 +670,24 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
         }
         for (int i = 0; i < termsAggregationBuilders.length; i++) {
             if (i != termsAggregationBuilders.length - 1) {
-                termsAggregationBuilders[i].subAggregation(termsAggregationBuilders[i + 1]).size(Constant.AGG_RESULT_COUNT);
+                termsAggregationBuilders[i].subAggregation(termsAggregationBuilders[i + 1]).size(ESConstant.AGG_RESULT_COUNT);
             }
         }
         if (AggsType.count == aggsType) {
             termsAggregationBuilders[termsAggregationBuilders.length - 1]
-                    .subAggregation(AggregationBuilders.count(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+                    .subAggregation(AggregationBuilders.count(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         } else if (AggsType.min == aggsType) {
             termsAggregationBuilders[termsAggregationBuilders.length - 1]
-                    .subAggregation(AggregationBuilders.min(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+                    .subAggregation(AggregationBuilders.min(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         } else if (AggsType.max == aggsType) {
             termsAggregationBuilders[termsAggregationBuilders.length - 1]
-                    .subAggregation(AggregationBuilders.max(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+                    .subAggregation(AggregationBuilders.max(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         } else if (AggsType.sum == aggsType) {
             termsAggregationBuilders[termsAggregationBuilders.length - 1]
-                    .subAggregation(AggregationBuilders.sum(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+                    .subAggregation(AggregationBuilders.sum(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         } else if (AggsType.avg == aggsType) {
             termsAggregationBuilders[termsAggregationBuilders.length - 1]
-                    .subAggregation(AggregationBuilders.avg(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+                    .subAggregation(AggregationBuilders.avg(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         }
         if (queryBuilder != null) {
             searchSourceBuilder.query(queryBuilder);
@@ -882,7 +884,7 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
                 .field(bucketName);
         //默认按照count的降序排序
         aggregation.order(BucketOrder.count(false));
-        aggregation.subAggregation(AggregationBuilders.stats(me).field(metricName)).size(Constant.AGG_RESULT_COUNT);
+        aggregation.subAggregation(AggregationBuilders.stats(me).field(metricName)).size(ESConstant.AGG_RESULT_COUNT);
         if (queryBuilder != null) {
             searchSourceBuilder.query(queryBuilder);
         }
@@ -978,7 +980,7 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
     public Map<Double, Double> percentilesAggs(String metricName, QueryBuilder queryBuilder, Class<T> clazz) throws Exception {
         MetaData metaData = IndexTools.getIndexType(clazz);
         String[] indexname = metaData.getSearchIndexNames();
-        return percentilesAggs(metricName, queryBuilder, clazz, Constant.DEFAULT_PERCSEGMENT, indexname);
+        return percentilesAggs(metricName, queryBuilder, clazz, ESConstant.DEFAULT_PERCSEGMENT, indexname);
     }
 
     @Override
@@ -1605,7 +1607,7 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
         searchRequest.scroll(scroll);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         if(size == null || size == 0){
-            searchSourceBuilder.size(Constant.DEFAULT_SCROLL_PERPAGE);
+            searchSourceBuilder.size(ESConstant.DEFAULT_SCROLL_PERPAGE);
         }else{
             searchSourceBuilder.size(size);
         }
@@ -1649,7 +1651,7 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
     public List<T> scroll(QueryBuilder queryBuilder, Class<T> clazz) throws Exception {
         MetaData metaData = IndexTools.getIndexType(clazz);
         String[] indexname = metaData.getSearchIndexNames();
-        return scroll(queryBuilder, clazz, Constant.DEFAULT_SCROLL_TIME, indexname);
+        return scroll(queryBuilder, clazz, ESConstant.DEFAULT_SCROLL_TIME, indexname);
     }
 
     @Override
@@ -1668,7 +1670,7 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
                 CompletionSuggestionBuilder(fieldName + ".suggest");
         completionSuggestionBuilder.text(fieldValue);
         completionSuggestionBuilder.skipDuplicates(true);
-        completionSuggestionBuilder.size(Constant.COMPLETION_SUGGESTION_SIZE);
+        completionSuggestionBuilder.size(ESConstant.COMPLETION_SUGGESTION_SIZE);
         suggestBuilder.addSuggestion("suggest_" + fieldName, completionSuggestionBuilder);
         searchSourceBuilder.suggest(suggestBuilder);
         SearchRequest searchRequest = new SearchRequest(indexname);
@@ -1711,7 +1713,7 @@ public class ElasticsearchTemplateImpl<T, M> implements ElasticsearchTemplate<T,
         phraseSuggestionBuilder
                 .text(fieldValue)
                 .confidence(param.getConfidence())
-                .size(Constant.COMPLETION_SUGGESTION_SIZE)
+                .size(ESConstant.COMPLETION_SUGGESTION_SIZE)
                 .maxErrors(param.getMaxErrors())
                 .addCandidateGenerator(new DirectCandidateGeneratorBuilder(fieldName).suggestMode(param.getSuggestMode()));
         if(param.getAnalyzer() != null) {
