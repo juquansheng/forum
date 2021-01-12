@@ -52,6 +52,7 @@ public class ElasticSearchConfiguration  {
         String host = elasticsearchProperties.getHost();
         String username = elasticsearchProperties.getUsername();
         String password = elasticsearchProperties.getPassword();
+        String scheme = elasticsearchProperties.getScheme();
         try {
             if(StringUtils.isEmpty(host)){
                 host = ESConstant.DEFAULT_ES_HOST;
@@ -60,13 +61,14 @@ public class ElasticSearchConfiguration  {
             HttpHost[] httpHosts = new HttpHost[hosts.length];
             for (int i = 0; i < httpHosts.length; i++) {
                 String h = hosts[i];
-                httpHosts[i] = new HttpHost(h.split(":")[0], Integer.parseInt(h.split(":")[1]), "http");
+                httpHosts[i] = new HttpHost(h.split(":")[0], Integer.parseInt(h.split(":")[1]), scheme);
+                log.info("RestHighLevelClient加载httpHosts,host:"+h.split(":")[0]+",port:"+Integer.parseInt(h.split(":")[1]));
             }
 
             if(!StringUtils.isEmpty(username)) {
                 final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
                 credentialsProvider.setCredentials(AuthScope.ANY,
-                        new UsernamePasswordCredentials(username, password));  //es账号密码（默认用户名为elastic）
+                        new UsernamePasswordCredentials(username, password));
                 restHighLevelClient = new RestHighLevelClient(
                         RestClient.builder(httpHosts).setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
                             @Override

@@ -14,11 +14,6 @@ spring:
       name: search
       username: user
       password: 123
-  datasource:
-    dynamic:
-      primary: master
-      strict: true
-      seata: false
   security:
     user:
       name: user
@@ -56,7 +51,7 @@ management:
   endpoint:
     #    服务监控auth必须配置读取的日志位置
     logfile:
-      external_file: /home/exchange/auth/logs/stdout.log
+      external_file: /home/exchange/search/logs/stdout.log
     health:
       show-details: always
 
