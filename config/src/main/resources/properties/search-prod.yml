@@ -80,7 +80,19 @@ spring:
       # 指定消息key和消息体的编解码方式 UTF-8
       key-serializer: org.apache.kafka.account.serialization.StringSerializer
       value-serializer: org.apache.kafka.account.serialization.StringSerializer
-
+  elasticsearch:
+    host: 106.53.237.234
+    port: 9200
+    username:
+    password:
+    connectNum: 10
+    connectPerRoute: 50
+    token: es-token
+    charset: UTF-8
+    scheme: http
+    client:
+      connectTimeOut: 5000
+      socketTimeout: 15000
 # mybatis-plus
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml,classpath*:com/gitee/juquansheng/mybatis/actable/mapping/*/*.xml

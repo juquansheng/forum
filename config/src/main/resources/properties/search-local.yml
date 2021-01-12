@@ -83,6 +83,10 @@ spring:
   elasticsearch:
     host: 106.53.237.234
     port: 9200
+    username:
+    password: 
+    connectNum: 10
+    connectPerRoute: 50
     token: es-token
     charset: UTF-8
     scheme: http
