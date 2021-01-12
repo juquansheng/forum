@@ -12,5 +12,6 @@ public class ElasticsearchProperties {
     private String username;
     private String password;
     private String scheme;
+    private String clusterName;//集群
 
 }
