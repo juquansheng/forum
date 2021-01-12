@@ -48,8 +48,7 @@ spring:
       key-serializer: org.apache.kafka.account.serialization.StringSerializer
       value-serializer: org.apache.kafka.account.serialization.StringSerializer
   elasticsearch:
-    host: 106.53.237.234
-    port: 9200
+    host: 106.53.237.234:9200,106.53.237.234:9200
     username:
     password:
     connectNum: 10
