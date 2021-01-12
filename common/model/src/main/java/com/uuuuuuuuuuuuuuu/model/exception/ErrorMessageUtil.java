@@ -2,7 +2,7 @@ package com.uuuuuuuuuuuuuuu.model.exception;
 
 
 import com.uuuuuuuuuuuuuuu.model.enums.SystemLanguageEnum;
-import com.uuuuuuuuuuuuuuu.model.global.Constants;
+import com.uuuuuuuuuuuuuuu.model.constant.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.CollectionUtils;

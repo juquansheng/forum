@@ -1,4 +1,4 @@
-package com.uuuuuuuuuuuuuuu.util.annotation;
+package com.uuuuuuuuuuuuuuu.model.annotation;
 
 
 import com.uuuuuuuuuuuuuuu.model.enums.Analyzer;

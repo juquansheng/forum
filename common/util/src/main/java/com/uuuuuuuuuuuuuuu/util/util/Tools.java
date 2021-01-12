@@ -3,8 +3,8 @@ package com.uuuuuuuuuuuuuuu.util.util;
 
 import com.uuuuuuuuuuuuuuu.model.constant.ESConstant;
 import com.uuuuuuuuuuuuuuu.model.enums.DataType;
-import com.uuuuuuuuuuuuuuu.util.annotation.ESID;
-import com.uuuuuuuuuuuuuuu.util.annotation.ESMapping;
+import com.uuuuuuuuuuuuuuu.model.annotation.ESID;
+import com.uuuuuuuuuuuuuuu.model.annotation.ESMapping;
 import org.springframework.util.StringUtils;
 
 

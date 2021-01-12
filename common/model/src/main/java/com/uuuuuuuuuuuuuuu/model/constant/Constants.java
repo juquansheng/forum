@@ -1,4 +1,4 @@
-package com.uuuuuuuuuuuuuuu.model.global;
+package com.uuuuuuuuuuuuuuu.model.constant;
 
 /**
  * 字符常量

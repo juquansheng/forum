@@ -2,7 +2,7 @@ package com.uuuuuuuuuuuuuuu.feign.config;
 
 
 import com.uuuuuuuuuuuuuuu.model.global.BaseSysConf;
-import com.uuuuuuuuuuuuuuu.model.global.Constants;
+import com.uuuuuuuuuuuuuuu.model.constant.Constants;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.apache.commons.lang3.StringUtils;

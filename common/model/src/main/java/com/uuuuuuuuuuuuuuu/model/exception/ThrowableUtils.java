@@ -3,7 +3,7 @@ package com.uuuuuuuuuuuuuuu.model.exception;
 import cn.hutool.core.collection.CollectionUtil;
 
 import com.uuuuuuuuuuuuuuu.model.exception.exceptionType.ApiInvalidParamException;
-import com.uuuuuuuuuuuuuuu.model.global.Constants;
+import com.uuuuuuuuuuuuuuu.model.constant.Constants;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 

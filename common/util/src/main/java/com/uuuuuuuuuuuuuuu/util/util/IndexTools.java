@@ -1,8 +1,8 @@
 package com.uuuuuuuuuuuuuuu.util.util;
 
 import com.uuuuuuuuuuuuuuu.model.dto.MetaData;
-import com.uuuuuuuuuuuuuuu.util.annotation.ESMapping;
-import com.uuuuuuuuuuuuuuu.util.annotation.ESMetaData;
+import com.uuuuuuuuuuuuuuu.model.annotation.ESMapping;
+import com.uuuuuuuuuuuuuuu.model.annotation.ESMetaData;
 import org.springframework.util.StringUtils;
 
 
