@@ -14,7 +14,7 @@ spring:
       password: ${CONFIG_SERVER_PASSWORD:123}
 
 server:
-  port: 11000
+  port: 30001
   servlet:
     context-path: /
 

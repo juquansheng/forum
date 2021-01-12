@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@ConfigurationProperties("elasticsearch") //描述了当前pojo对应的配置文件前缀
+@ConfigurationProperties("spring.elasticsearch") //描述了当前pojo对应的配置文件前缀
 public class ElasticsearchProperties {
     private String host = "127.0.0.1:9200";
     private String username;

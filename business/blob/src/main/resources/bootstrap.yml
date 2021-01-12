@@ -11,7 +11,7 @@ spring:
       #      环境
       profile: ${SPRING.PROFILES.ACTIVE:local}
       #      应用名称
-      name: credit
+      name: blob
       username: user
       password: 123
   datasource:
@@ -25,7 +25,7 @@ spring:
       password: ${CONFIG_SERVER_PASSWORD:123}
 
 server:
-  port: 9002
+  port: 31000
   servlet:
     context-path: /
 

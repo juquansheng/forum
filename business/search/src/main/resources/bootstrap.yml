@@ -1,6 +1,6 @@
 spring:
   application:
-    name: auth
+    name: search
   cloud:
     config:
       discovery:
@@ -11,7 +11,7 @@ spring:
       #      环境
       profile: ${SPRING.PROFILES.ACTIVE:local}
       #      应用名称
-      name: auth
+      name: search
       username: user
       password: 123
   datasource:
@@ -25,7 +25,7 @@ spring:
       password: ${CONFIG_SERVER_PASSWORD:123}
 
 server:
-  port: 8900
+  port: 31001
   servlet:
     context-path: /
 

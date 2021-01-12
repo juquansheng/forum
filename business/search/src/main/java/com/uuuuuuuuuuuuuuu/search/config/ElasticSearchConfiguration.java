@@ -1,6 +1,7 @@
 package com.uuuuuuuuuuuuuuu.search.config;
 
 import com.uuuuuuuuuuuuuuu.util.util.Constant;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -20,13 +21,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.util.StringUtils;
 
 
-
+@Slf4j
 @Configuration
 public class ElasticSearchConfiguration  {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-//    @Value("${elasticsearch.host}")
-//    private String host;
+
     @Autowired
     ElasticsearchProperties elasticsearchProperties;
 
