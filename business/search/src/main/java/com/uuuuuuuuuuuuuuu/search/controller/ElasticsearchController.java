@@ -67,7 +67,7 @@ public class ElasticsearchController {
         Sort.Order order = new Sort.Order(SortOrder.ASC,sorter);
         psh.setSort(new Sort(order));
         //定制高亮，如果定制了高亮，返回结果会自动替换字段值为高亮内容
-        psh.setHighLight(new HighLight().field("keywords"));
+        psh.setHighLight(new HighLight().field(keywords));
         //可以单独定义高亮的格式
         //new HighLight().setPreTag("<em>");
         //new HighLight().setPostTag("</em>");
