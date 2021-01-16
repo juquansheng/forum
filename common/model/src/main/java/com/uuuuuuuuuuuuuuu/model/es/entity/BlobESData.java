@@ -1,7 +1,9 @@
 package com.uuuuuuuuuuuuuuu.model.es.entity;
 
 import com.uuuuuuuuuuuuuuu.model.annotation.ESID;
+import com.uuuuuuuuuuuuuuu.model.annotation.ESMapping;
 import com.uuuuuuuuuuuuuuu.model.annotation.ESMetaData;
+import com.uuuuuuuuuuuuuuu.model.enums.DataType;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,6 +15,7 @@ public class BlobESData implements Serializable {
     @ESID
     private String id;
 
+    @ESMapping(datatype = DataType.text_type)
     private String title;
     private String content;
     private String desc;
