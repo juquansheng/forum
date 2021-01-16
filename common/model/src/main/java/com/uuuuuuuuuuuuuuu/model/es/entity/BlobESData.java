@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @ESMetaData(indexName = "blob", number_of_shards = 5,number_of_replicas = 0)
-public class BlobESMetaData implements Serializable {
+public class BlobESData implements Serializable {
     private static final long serialVersionUID = 1L;
     @ESID
     private String id;

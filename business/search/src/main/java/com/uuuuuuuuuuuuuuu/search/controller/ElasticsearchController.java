@@ -1,6 +1,6 @@
 package com.uuuuuuuuuuuuuuu.search.controller;
 
-import com.uuuuuuuuuuuuuuu.model.es.entity.BlobESMetaData;
+import com.uuuuuuuuuuuuuuu.model.es.entity.BlobESData;
 import com.uuuuuuuuuuuuuuu.model.global.BaseMessageConf;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
 import com.uuuuuuuuuuuuuuu.search.repository.*;
@@ -9,25 +9,14 @@ import com.uuuuuuuuuuuuuuu.search.service.ElasticsearchTemplate;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
-import org.checkerframework.checker.units.qual.A;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
 
 /**
  * description: ElasticsearchController
@@ -43,10 +32,10 @@ public class ElasticsearchController {
     @Autowired
     private ElasticsearchIndex elasticsearchIndex;
     @Autowired
-    private ElasticsearchTemplate<BlobESMetaData,String> elasticsearchTemplate;
+    private ElasticsearchTemplate<BlobESData,String> elasticsearchTemplate;
 
     public void test() throws Exception {
-        BlobESMetaData blobESMetaData = new BlobESMetaData();
+        BlobESData blobESMetaData = new BlobESData();
         blobESMetaData.setId("1");
         elasticsearchTemplate.save(blobESMetaData);
     }
@@ -68,9 +57,9 @@ public class ElasticsearchController {
         psh.setSort(new Sort(order));
         //定制高亮，如果定制了高亮，返回结果会自动替换字段值为高亮内容
         HighLight highLight = new HighLight();
-        HighLight field = highLight.field("content");
-        highLight.setPreTag("<em1>");
-        highLight.setPostTag("</em1>");
+        HighLight field = highLight.field("content").field("title");
+        field.setPreTag("<em1>");
+        field.setPostTag("</em1>");
         psh.setHighLight(field);
         //可以单独定义高亮的格式
 
@@ -82,12 +71,22 @@ public class ElasticsearchController {
         if (StringUtils.isEmpty(keywords)) {
             return Result.failed(BaseMessageConf.KEYWORD_IS_NOT_EMPTY);
         }
-        MatchQueryBuilder queryBuilder = QueryBuilders.matchQuery("content", keywords);
-        PageList<BlobESMetaData> pageList = elasticsearchTemplate.search(queryBuilder, psh, BlobESMetaData.class);
+        MatchQueryBuilder queryBuilder = QueryBuilders.matchQuery("name", keywords);
+        QueryBuilders.boolQuery().filter();
+        PageList<BlobESData> pageList = elasticsearchTemplate.search(queryBuilder, psh, BlobESData.class);
         return Result.ok(pageList);
     }
 
 
+    @ApiOperation(value = "ElasticSearch初始化索引", notes = "ElasticSearch初始化索引", response = String.class)
+    @PostMapping("/initElasticSearchIndex")
+    public Result initElasticSearchIndex() throws Exception {
+
+        elasticsearchIndex.createIndex(BlobESData.class);
+
+
+        return Result.ok();
+    }
 
 
 }
