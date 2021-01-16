@@ -12,4 +12,9 @@ public class BlobESMetaData implements Serializable {
     private static final long serialVersionUID = 1L;
     @ESID
     private String id;
+
+    private String title;
+    private String content;
+    private String desc;
+    private String name;
 }
