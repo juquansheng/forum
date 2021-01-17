@@ -111,6 +111,10 @@ public class Constants {
 
     // 默认文件路径分隔符
     public static final String PATH_SEPARATOR = "/";
+    /**
+     * 文件分割符
+     */
+    public final static String FILE_SEGMENTATION = ",";
 
     //异常类型
     public static final String DELIMITER_TO = "@";

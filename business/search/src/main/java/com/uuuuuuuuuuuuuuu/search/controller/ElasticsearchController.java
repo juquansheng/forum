@@ -1,11 +1,13 @@
 package com.uuuuuuuuuuuuuuu.search.controller;
 
+import com.uuuuuuuuuuuuuuu.model.constant.Constants;
 import com.uuuuuuuuuuuuuuu.model.es.dto.BlogESData;
 import com.uuuuuuuuuuuuuuu.model.global.BaseMessageConf;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
 import com.uuuuuuuuuuuuuuu.search.repository.*;
 import com.uuuuuuuuuuuuuuu.search.service.ElasticsearchIndex;
 import com.uuuuuuuuuuuuuuu.search.service.ElasticsearchTemplate;
+import com.uuuuuuuuuuuuuuu.util.util.StringConvertUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * description: ElasticsearchController
@@ -73,6 +76,36 @@ public class ElasticsearchController {
 
         PageList<BlogESData> pageList = elasticsearchTemplate.search(boolQueryBuilder, psh, BlogESData.class);
         return Result.ok(pageList);
+    }
+
+    @ApiOperation(value = "通过uids删除ElasticSearch博客索引", notes = "通过uids删除ElasticSearch博客索引", response = String.class)
+    @PostMapping("/deleteElasticSearchByUids")
+    public Result deleteElasticSearchByUids(@RequestParam(required = true) String uids) throws Exception {
+
+        List<String> uidList = StringConvertUtils.changeStringToString(uids, Constants.FILE_SEGMENTATION);
+
+        for (String uid : uidList) {
+            elasticsearchTemplate.deleteById(uid,BlogESData.class);
+        }
+
+        return Result.ok();
+    }
+
+    @ApiOperation(value = "通过博客uid删除ElasticSearch博客索引", notes = "通过uid删除博客", response = String.class)
+    @PostMapping("/deleteElasticSearchByUid")
+    public Result deleteElasticSearchByUid(@RequestParam(required = true) String uid) throws Exception {
+        elasticsearchTemplate.deleteById(uid,BlogESData.class);
+        return Result.ok();
+    }
+
+
+    @ApiOperation(value = "ElasticSearch通过博客Uid添加索引", notes = "添加博客", response = String.class)
+    @PostMapping("/addElasticSearchIndexByUid")
+    public Result addElasticSearchIndexByUid(@RequestParam(required = true) String uid) {
+
+
+        return Result.ok();
+
     }
 
 
