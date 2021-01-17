@@ -102,7 +102,9 @@ public class ElasticsearchController {
     @ApiOperation(value = "ElasticSearch通过博客Uid添加索引", notes = "添加博客", response = String.class)
     @PostMapping("/addElasticSearchIndexByUid")
     public Result addElasticSearchIndexByUid(@RequestParam(required = true) String uid) {
+        //查询数据库是否存在对应博客数据
 
+        //如果存在则保存数据
 
         return Result.ok();
 
