@@ -3,11 +3,16 @@ package com.uuuuuuuuuuuuuuu.model.es.dto;
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.uuuuuuuuuuuuuuu.model.annotation.ESID;
+import com.uuuuuuuuuuuuuuu.model.annotation.ESMapping;
 import com.uuuuuuuuuuuuuuu.model.annotation.ESMetaData;
+import com.uuuuuuuuuuuuuuu.model.enums.Analyzer;
+import com.uuuuuuuuuuuuuuu.model.enums.DataType;
 import com.uuuuuuuuuuuuuuu.model.es.entity.BlogSort;
 import com.uuuuuuuuuuuuuuu.model.es.entity.Tag;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,18 +21,17 @@ import java.util.List;
 @ESMetaData(indexName = "blog", number_of_shards = 5,number_of_replicas = 0)
 @Data
 @TableName("blog")
-public class Blog {
+public class BlogESData implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 唯一oid【自动递增】
-     */
-    private Integer oid;
+    @ESID
+    private String id;
 
     /**
      * 博客标题
      */
+    @ESMapping(datatype = DataType.text_type,search_analyzer = Analyzer.ik_max_word,analyzer = Analyzer.ik_max_word)
     private String title;
 
     /**
@@ -35,11 +39,13 @@ public class Blog {
      * updateStrategy = FieldStrategy.IGNORED ：表示更新时候忽略非空判断
      */
     @TableField(updateStrategy = FieldStrategy.IGNORED)
+    @ESMapping(datatype = DataType.text_type)
     private String summary;
 
     /**
      * 博客内容
      */
+    @ESMapping(datatype = DataType.text_type,search_analyzer = Analyzer.ik_max_word,analyzer = Analyzer.ik_max_word)
     private String content;
 
     /**

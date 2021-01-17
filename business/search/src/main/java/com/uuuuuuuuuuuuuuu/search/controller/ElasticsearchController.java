@@ -1,6 +1,6 @@
 package com.uuuuuuuuuuuuuuu.search.controller;
 
-import com.uuuuuuuuuuuuuuu.model.es.entity.BlobESData;
+import com.uuuuuuuuuuuuuuu.model.es.dto.BlogESData;
 import com.uuuuuuuuuuuuuuu.model.global.BaseMessageConf;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
 import com.uuuuuuuuuuuuuuu.search.repository.*;
@@ -9,6 +9,7 @@ import com.uuuuuuuuuuuuuuu.search.service.ElasticsearchTemplate;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortOrder;
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
 
 /**
  * description: ElasticsearchController
@@ -32,10 +32,10 @@ public class ElasticsearchController {
     @Autowired
     private ElasticsearchIndex elasticsearchIndex;
     @Autowired
-    private ElasticsearchTemplate<BlobESData,String> elasticsearchTemplate;
+    private ElasticsearchTemplate<BlogESData,String> elasticsearchTemplate;
 
     public void test() throws Exception {
-        BlobESData blobESMetaData = new BlobESData();
+        BlogESData blobESMetaData = new BlogESData();
         blobESMetaData.setId("1");
         elasticsearchTemplate.save(blobESMetaData);
     }
@@ -47,33 +47,31 @@ public class ElasticsearchController {
                              @RequestParam(name = "currentPage", required = false, defaultValue = "1") Integer
                                      currentPage,
                              @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer
-                                     pageSize) throws Exception {
+                                     pageSize,
+                             @RequestParam(name = "sorter", required = false, defaultValue = "sort") String
+                                         sorter) throws Exception {
 
         //分页
         PageSortHighLight psh = new PageSortHighLight(currentPage,pageSize);
         //排序字段，注意如果是text类型会默认带有keyword性质，需要拼接.keyword
-        String sorter = "age";
         Sort.Order order = new Sort.Order(SortOrder.ASC,sorter);
         psh.setSort(new Sort(order));
         //定制高亮，如果定制了高亮，返回结果会自动替换字段值为高亮内容
         HighLight highLight = new HighLight();
-        HighLight field = highLight.field("content").field("title");
-        field.setPreTag("<em1>");
-        field.setPostTag("</em1>");
+        HighLight field = highLight.field("title").field("content");
+        field.setPreTag("<span style='color:red'>");
+        field.setPostTag("</span>");
         psh.setHighLight(field);
-        //可以单独定义高亮的格式
-
-        //psh.setHighLight(new HighLight().field("content").field("desc"));
-        /*PageList<BlobESMetaData> pageList = new PageList<>();
-        pageList = elasticsearchTemplate.search(new MatchAllQueryBuilder(), psh, BlobESMetaData.class);
-        pageList.getList().forEach(main2 -> System.out.println(main2));*/
 
         if (StringUtils.isEmpty(keywords)) {
             return Result.failed(BaseMessageConf.KEYWORD_IS_NOT_EMPTY);
         }
-        MatchQueryBuilder queryBuilder = QueryBuilders.matchQuery("name", keywords);
-        QueryBuilders.boolQuery().filter();
-        PageList<BlobESData> pageList = elasticsearchTemplate.search(queryBuilder, psh, BlobESData.class);
+        MatchQueryBuilder queryBuilder = QueryBuilders.matchQuery("title", keywords);
+        BoolQueryBuilder filter = QueryBuilders.boolQuery().filter(queryBuilder);
+
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("title", keywords)).should(QueryBuilders.matchQuery("content", keywords));
+
+        PageList<BlogESData> pageList = elasticsearchTemplate.search(boolQueryBuilder, psh, BlogESData.class);
         return Result.ok(pageList);
     }
 
@@ -82,7 +80,7 @@ public class ElasticsearchController {
     @PostMapping("/initElasticSearchIndex")
     public Result initElasticSearchIndex() throws Exception {
 
-        elasticsearchIndex.createIndex(BlobESData.class);
+        elasticsearchIndex.createIndex(BlogESData.class);
 
 
         return Result.ok();
