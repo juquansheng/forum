@@ -8,9 +8,9 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>blob</artifactId>
+    <artifactId>blog</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>blob</name>
+    <name>blog</name>
     <description>博客</description>
 
 </project>

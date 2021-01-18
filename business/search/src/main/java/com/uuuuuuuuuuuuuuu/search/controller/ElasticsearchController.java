@@ -38,9 +38,9 @@ public class ElasticsearchController {
     private ElasticsearchTemplate<BlogESData,String> elasticsearchTemplate;
 
     public void test() throws Exception {
-        BlogESData blobESMetaData = new BlogESData();
-        blobESMetaData.setId("1");
-        elasticsearchTemplate.save(blobESMetaData);
+        BlogESData blogESMetaData = new BlogESData();
+        blogESMetaData.setId("1");
+        elasticsearchTemplate.save(blogESMetaData);
     }
 
     @ApiOperation(value = "通过ElasticSearch搜索博客", notes = "通过ElasticSearch搜索博客", response = String.class)
