@@ -26,8 +26,10 @@ public class BlogController {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public String test() throws Exception {
-        return "---------------------------";
+    @ApiOperation(value = "test", notes = "test", response = String.class)
+    @GetMapping("/test")
+    public String test(String param) throws Exception {
+        return "---------------------------:"+param;
     }
 
     @ApiOperation(value = "搜索博客", notes = "搜索博客", response = String.class)
