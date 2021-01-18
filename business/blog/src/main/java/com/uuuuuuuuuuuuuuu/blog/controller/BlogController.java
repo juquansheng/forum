@@ -3,6 +3,8 @@ package com.uuuuuuuuuuuuuuu.blog.controller;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value = "blog")
 public class BlogController {
 
-
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     public String test() throws Exception {
         return "---------------------------";
