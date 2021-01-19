@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@FeignClient(name = "mogu-search", configuration = FeignConfiguration.class, fallback = SearchFeignFallback.class)
+@FeignClient(name = "search", configuration = FeignConfiguration.class, fallback = SearchFeignFallback.class)
 public interface SearchFeignClient {
 
 

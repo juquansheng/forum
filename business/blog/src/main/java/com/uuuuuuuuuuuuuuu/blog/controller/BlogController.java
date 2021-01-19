@@ -1,5 +1,6 @@
 package com.uuuuuuuuuuuuuuu.blog.controller;
 
+import com.uuuuuuuuuuuuuuu.feign.feign.SearchFeignClient;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -25,6 +27,8 @@ public class BlogController {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+    @Resource
+    private SearchFeignClient searchFeignClient;
 
     @ApiOperation(value = "test", notes = "test", response = String.class)
     @GetMapping("/test")
@@ -32,10 +36,10 @@ public class BlogController {
         return "---------------------------:"+param;
     }
 
-    @ApiOperation(value = "搜索博客", notes = "搜索博客", response = String.class)
+    @ApiOperation(value = "查询博客列表", notes = "查询博客列表", response = String.class)
     @GetMapping("/elasticSearchBlog")
     public Result searchBlog(HttpServletRequest request,
-                             @RequestParam(required = false) String keywords,
+                             @RequestParam(required = false) String userName,
                              @RequestParam(name = "currentPage", required = false, defaultValue = "1") Integer
                                      currentPage,
                              @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer
