@@ -2,7 +2,7 @@ package com.uuuuuuuuuuuuuuu.auth.config.account;
 
 
 import com.uuuuuuuuuuuuuuu.auth.config.MyUserDetailsService;
-import com.uuuuuuuuuuuuuuu.auth.service.UserAccountService;
+import com.uuuuuuuuuuuuuuu.core.service.UserAccountService;
 import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
 import com.uuuuuuuuuuuuuuu.util.util.PatternMatcherUtils;
 import lombok.Builder;

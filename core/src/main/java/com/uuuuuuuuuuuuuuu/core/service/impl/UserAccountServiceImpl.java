@@ -1,19 +1,15 @@
-package com.uuuuuuuuuuuuuuu.auth.service.impl;
+package com.uuuuuuuuuuuuuuu.core.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.uuuuuuuuuuuuuuu.auth.mapper.UserAccountMapper;
-import com.uuuuuuuuuuuuuuu.auth.service.UserAccountService;
+
+import com.uuuuuuuuuuuuuuu.core.mapper.auth.UserAccountMapper;
+import com.uuuuuuuuuuuuuuu.core.service.UserAccountService;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
-import com.uuuuuuuuuuuuuuu.model.vo.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -25,16 +25,16 @@ public class DefaultDataSourceConfig {
     // 指定当前数据源扫描的Mapper(Dao)包
 
     static final String PACKAGE = "com.uuuuuuuuuuuuuuu.core.mapper.forum";
-    static final String MAPPER_LOCATION = "classpath:mapper/forum/*.xml";
+    static final String MAPPER_LOCATION = "classpath*:mapper/blog/*.xml";
 
     //  获取配置文件里面当前数据源的的配置信息
-    @Value("${spring.datasource.default.url}")
+    @Value("${spring.datasource.dynamic.datasource.master.url}")
     private String url;
-    @Value("${spring.datasource.default.username}")
+    @Value("${spring.datasource.dynamic.datasource.master.username}")
     private String user;
-    @Value("${spring.datasource.default.password}")
+    @Value("${spring.datasource.dynamic.datasource.master.password}")
     private String password;
-    @Value("${spring.datasource.default.driver-class-name}")
+    @Value("${spring.datasource.dynamic.datasource.master.driver-class-name}")
     private String driverClass;
 
 

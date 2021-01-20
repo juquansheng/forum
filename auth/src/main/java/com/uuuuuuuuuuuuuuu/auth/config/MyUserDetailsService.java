@@ -3,7 +3,7 @@ package com.uuuuuuuuuuuuuuu.auth.config;
 
 
 import com.baomidou.dynamic.datasource.annotation.DS;
-import com.uuuuuuuuuuuuuuu.auth.service.UserAccountService;
+import com.uuuuuuuuuuuuuuu.core.service.UserAccountService;
 import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;

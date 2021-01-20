@@ -19,7 +19,7 @@ package com.uuuuuuuuuuuuuuu.auth.config.account;
 
 
 import com.uuuuuuuuuuuuuuu.auth.config.MyUserDetailsService;
-import com.uuuuuuuuuuuuuuu.auth.service.UserAccountService;
+import com.uuuuuuuuuuuuuuu.core.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;

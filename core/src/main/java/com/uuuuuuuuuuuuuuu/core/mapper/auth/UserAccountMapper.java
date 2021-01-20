@@ -1,4 +1,4 @@
-package com.uuuuuuuuuuuuuuu.auth.mapper;
+package com.uuuuuuuuuuuuuuu.core.mapper.auth;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;

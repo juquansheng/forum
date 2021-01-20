@@ -1,8 +1,7 @@
-package com.uuuuuuuuuuuuuuu.auth.service;
+package com.uuuuuuuuuuuuuuu.core.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
-import com.uuuuuuuuuuuuuuu.model.vo.Result;
 
 
 /**

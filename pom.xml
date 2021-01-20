@@ -81,7 +81,7 @@
         <module>gateway</module>
         <module>common</module>
         <module>business</module>
-
+        <module>core</module>
 
     </modules>
 
