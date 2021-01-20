@@ -42,7 +42,7 @@
 
         <dependency>
             <groupId>com.uuuuuuuuuuuuuuu</groupId>
-            <artifactId>database</artifactId>
+            <artifactId>datasource</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

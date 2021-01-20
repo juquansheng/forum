@@ -15,7 +15,7 @@
  * Author: lengleng (wangiegie@gmail.com)
  */
 
-package com.uuuuuuuuuuuuuuu.database;
+package com.uuuuuuuuuuuuuuu.datasource;
 
 
 import org.springframework.context.annotation.ComponentScan;
@@ -23,6 +23,6 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * 动态数据源切换配置
  */
-@ComponentScan(basePackages = {"com.uuuuuuuuuuuuuuu.database"})
+@ComponentScan(basePackages = {"com.uuuuuuuuuuuuuuu.datasource"})
 public class DynamicDataSourceAutoConfiguration {
 }

@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>database</artifactId>
+    <artifactId>datasource</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>database</name>
     <description>数据库模块</description>

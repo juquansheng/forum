@@ -1,4 +1,4 @@
-package com.uuuuuuuuuuuuuuu.database.component;
+package com.uuuuuuuuuuuuuuu.datasource.component;
 
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;

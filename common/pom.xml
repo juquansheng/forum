@@ -20,7 +20,7 @@
         <module>model</module>
         <module>redis</module>
         <module>util</module>
-        <module>database</module>
+        <module>datasource</module>
         <module>mongodb</module>
         <module>feign</module>
 
