@@ -19,8 +19,8 @@ import javax.sql.DataSource;
  * author: juquansheng
  * version: 1.0 <br>
  */
-@Configuration
-@MapperScan(sqlSessionFactoryRef = "defaultSqlSessionFactory")
+//@Configuration
+//@MapperScan(sqlSessionFactoryRef = "defaultSqlSessionFactory")
 public class DefaultDataSourceConfig {
     // 指定当前数据源扫描的Mapper(Dao)包
 

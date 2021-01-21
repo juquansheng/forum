@@ -39,6 +39,7 @@ public class ForumDataSourceConfig {
 
 
     @Bean(name = "forumDataSource")
+    @Primary
     public DataSource forumDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverClass);
@@ -49,12 +50,14 @@ public class ForumDataSourceConfig {
     }
 
     @Bean(name = "forumTransactionManager")
+    @Primary
     public DataSourceTransactionManager forumTransactionManager() {
         return new DataSourceTransactionManager(forumDataSource());
     }
 
 
     @Bean(name = "forumSqlSessionFactory")
+    @Primary
     public MybatisSqlSessionFactoryBean forumSqlSessionFactory(@Qualifier("forumDataSource") DataSource forumDataSource)
             throws Exception {
         final MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();

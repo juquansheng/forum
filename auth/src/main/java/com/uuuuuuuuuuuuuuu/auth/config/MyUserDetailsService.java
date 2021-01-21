@@ -26,10 +26,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserAccount account = new UserAccount();
-        /*if (account==null) {
+        UserAccount account = userAccountService.getUserByAccount(username);
+        if (account==null) {
             throw new RuntimeException("用户名[" + username + "]账号不存在！");
-        }*/
+        }
         UserDto userDto = new UserDto();
         userDto.setPkId(account.getPkId());
         userDto.setUsername(username);
