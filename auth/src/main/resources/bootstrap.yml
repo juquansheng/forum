@@ -59,3 +59,12 @@ management:
       external_file: /home/exchange/auth/logs/stdout.log
     health:
       show-details: always
+
+tokenHeader: tokenHeader
+tokenHead: tokenHead
+audience:
+  clientId: yuuki
+  base64Secret: yuuki
+  name: yuuki
+  expiresSecond: 1000
+  refreshSecond: 1000

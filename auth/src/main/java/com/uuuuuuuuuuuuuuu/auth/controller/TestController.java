@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(value = "auth相关接口test", tags = {"auth相关接口test"})
 @RestController
-@RequestMapping("/test1")
+@RequestMapping("/test")
 public class TestController {
     @Value("${fdfs.so-timeout}")
     private String soTimeout;

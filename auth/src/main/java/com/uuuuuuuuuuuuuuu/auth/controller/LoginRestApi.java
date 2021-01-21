@@ -1,33 +1,25 @@
 package com.uuuuuuuuuuuuuuu.auth.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.uuuuuuuuuuuuuuu.model.constant.Constants;
 import com.uuuuuuuuuuuuuuu.model.constant.RedisConstant;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
+import com.uuuuuuuuuuuuuuu.redis.utils.RedisUtil;
 import com.uuuuuuuuuuuuuuu.util.util.IpUtil;
-import com.uuuuuuuuuuuuuuu.util.util.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
 @RestController
-@RefreshScope
+//@RefreshScope
 @RequestMapping("/auth")
 @Api(value = "登录相关接口", tags = {"登录相关接口"})
 @Slf4j
