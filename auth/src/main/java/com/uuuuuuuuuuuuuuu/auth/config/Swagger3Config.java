@@ -54,7 +54,7 @@ class Swagger3Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Admin接口文档")
+                .title("auth接口文档")
                 .description("restful风格")
                 .version("1.0")
                 .build();

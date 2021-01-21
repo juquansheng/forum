@@ -6,6 +6,7 @@ package com.uuuuuuuuuuuuuuu.auth.config.phone;
 
 
 import com.uuuuuuuuuuuuuuu.auth.config.MyUserDetailsService;
+import com.uuuuuuuuuuuuuuu.auth.config.phone.MobileAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;

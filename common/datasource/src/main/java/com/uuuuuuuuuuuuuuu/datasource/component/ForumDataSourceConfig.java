@@ -20,27 +20,26 @@ import javax.sql.DataSource;
  * version: 1.0 <br>
  */
 @Configuration
-@MapperScan(sqlSessionFactoryRef = "defaultSqlSessionFactory")
-public class DefaultDataSourceConfig {
+@MapperScan(basePackages = ForumDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "blogSqlSessionFactory")
+public class ForumDataSourceConfig {
     // 指定当前数据源扫描的Mapper(Dao)包
 
     static final String PACKAGE = "com.uuuuuuuuuuuuuuu.core.mapper.forum";
     static final String MAPPER_LOCATION = "classpath*:mapper/forum/*.xml";
 
     //  获取配置文件里面当前数据源的的配置信息
-    @Value("${spring.datasource.dynamic.datasource.master.url}")
+    @Value("${spring.datasource.dynamic.datasource.forum.url}")
     private String url;
-    @Value("${spring.datasource.dynamic.datasource.master.username}")
+    @Value("${spring.datasource.dynamic.datasource.forum.username}")
     private String user;
-    @Value("${spring.datasource.dynamic.datasource.master.password}")
+    @Value("${spring.datasource.dynamic.datasource.forum.password}")
     private String password;
-    @Value("${spring.datasource.dynamic.datasource.master.driver-class-name}")
+    @Value("${spring.datasource.dynamic.datasource.forum.driver-class-name}")
     private String driverClass;
 
 
-    @Bean(name = "defaultDataSource")
-    @Primary
-    public DataSource defaultDataSource() {
+    @Bean(name = "forumDataSource")
+    public DataSource forumDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(url);
@@ -49,20 +48,19 @@ public class DefaultDataSourceConfig {
         return dataSource;
     }
 
-    @Bean(name = "defaultTransactionManager")
-    @Primary
-    public DataSourceTransactionManager defaultTransactionManager() {
-        return new DataSourceTransactionManager(defaultDataSource());
+    @Bean(name = "forumTransactionManager")
+    public DataSourceTransactionManager forumTransactionManager() {
+        return new DataSourceTransactionManager(forumDataSource());
     }
 
 
-    @Bean(name = "defaultSqlSessionFactory")
-    @Primary
-    public MybatisSqlSessionFactoryBean defaultSqlSessionFactory(@Qualifier("defaultDataSource") DataSource defaultDataSource)
+    @Bean(name = "forumSqlSessionFactory")
+    public MybatisSqlSessionFactoryBean forumSqlSessionFactory(@Qualifier("forumDataSource") DataSource forumDataSource)
             throws Exception {
         final MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
-        sessionFactory.setDataSource(defaultDataSource);
-        //sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(DefaultDataSourceConfig.MAPPER_LOCATION));
+        sessionFactory.setDataSource(forumDataSource);
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources(ForumDataSourceConfig.MAPPER_LOCATION));
         return sessionFactory;
     }
 

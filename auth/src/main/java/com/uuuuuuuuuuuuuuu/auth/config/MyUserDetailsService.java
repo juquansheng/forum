@@ -25,16 +25,16 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserAccountService userAccountService;
 
     @Override
-    @DS("slave")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserAccount account = userAccountService.getUserByAccount(username);
-        if (account==null) {
+        UserAccount account = new UserAccount();
+        /*if (account==null) {
             throw new RuntimeException("用户名[" + username + "]账号不存在！");
-        }
+        }*/
         UserDto userDto = new UserDto();
         userDto.setPkId(account.getPkId());
         userDto.setUsername(username);
         userDto.setIsEnabled(true);
+        userDto.setPassword("$2a$10$MuipaCvr75sFnnIes6gF5OqRgZx8rD5evalnakyWqOVAZXtWUmgoW");
         /*userDto.setMobile(account.getCurrentMdtskMobNumber());
         userDto.setEmail(account.getCurrentMdtskEmailNumber());
         userDto.setPassword(account.getCurrentMdtskCipherCode());

@@ -17,39 +17,16 @@ import java.util.List;
 
 @Configuration
 class Swagger3Config {
+
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.OAS_30).
-                useDefaultResponseMessages(false)
+        return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .paths(PathSelectors.regex("^(?!auth).*$"))
-                .build()
-                .securitySchemes(securitySchemes())
-                .securityContexts(securityContexts());
-    }
+                .paths(PathSelectors.any())
+                .build();
 
-    private List<SecurityScheme> securitySchemes() {
-        return Lists.newArrayList(
-                new ApiKey("Authorization", "Authorization", "header"));
-    }
-
-    List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return Lists.newArrayList(
-                new SecurityReference("Authorization", authorizationScopes));
-    }
-
-    private List<SecurityContext> securityContexts() {
-        return Lists.newArrayList(
-                SecurityContext.builder()
-                        .securityReferences(defaultAuth())
-                        .forPaths(PathSelectors.regex("^(?!auth).*$"))
-                        .build()
-        );
     }
 
     private ApiInfo apiInfo() {

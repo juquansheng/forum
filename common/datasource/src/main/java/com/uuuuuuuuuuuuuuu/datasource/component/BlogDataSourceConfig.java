@@ -20,27 +20,26 @@ import javax.sql.DataSource;
  * version: 1.0 <br>
  */
 @Configuration
-@MapperScan(sqlSessionFactoryRef = "defaultSqlSessionFactory")
-public class DefaultDataSourceConfig {
+@MapperScan(basePackages = BlogDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "blogSqlSessionFactory")
+public class BlogDataSourceConfig {
     // 指定当前数据源扫描的Mapper(Dao)包
 
-    static final String PACKAGE = "com.uuuuuuuuuuuuuuu.core.mapper.forum";
-    static final String MAPPER_LOCATION = "classpath*:mapper/forum/*.xml";
+    static final String PACKAGE = "com.uuuuuuuuuuuuuuu.core.mapper.blog";
+    static final String MAPPER_LOCATION = "classpath*:mapper/blog/*.xml";
 
     //  获取配置文件里面当前数据源的的配置信息
-    @Value("${spring.datasource.dynamic.datasource.master.url}")
+    @Value("${spring.datasource.dynamic.datasource.blog.url}")
     private String url;
-    @Value("${spring.datasource.dynamic.datasource.master.username}")
+    @Value("${spring.datasource.dynamic.datasource.blog.username}")
     private String user;
-    @Value("${spring.datasource.dynamic.datasource.master.password}")
+    @Value("${spring.datasource.dynamic.datasource.blog.password}")
     private String password;
-    @Value("${spring.datasource.dynamic.datasource.master.driver-class-name}")
+    @Value("${spring.datasource.dynamic.datasource.blog.driver-class-name}")
     private String driverClass;
 
 
-    @Bean(name = "defaultDataSource")
-    @Primary
-    public DataSource defaultDataSource() {
+    @Bean(name = "blogDataSource")
+    public DataSource blogDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(url);
@@ -49,20 +48,19 @@ public class DefaultDataSourceConfig {
         return dataSource;
     }
 
-    @Bean(name = "defaultTransactionManager")
-    @Primary
-    public DataSourceTransactionManager defaultTransactionManager() {
-        return new DataSourceTransactionManager(defaultDataSource());
+    @Bean(name = "blogTransactionManager")
+    public DataSourceTransactionManager blogTransactionManager() {
+        return new DataSourceTransactionManager(blogDataSource());
     }
 
 
-    @Bean(name = "defaultSqlSessionFactory")
-    @Primary
-    public MybatisSqlSessionFactoryBean defaultSqlSessionFactory(@Qualifier("defaultDataSource") DataSource defaultDataSource)
+    @Bean(name = "blogSqlSessionFactory")
+    public MybatisSqlSessionFactoryBean blogSqlSessionFactory(@Qualifier("blogDataSource") DataSource blogDataSource)
             throws Exception {
         final MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
-        sessionFactory.setDataSource(defaultDataSource);
-        //sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(DefaultDataSourceConfig.MAPPER_LOCATION));
+        sessionFactory.setDataSource(blogDataSource);
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources(BlogDataSourceConfig.MAPPER_LOCATION));
         return sessionFactory;
     }
 

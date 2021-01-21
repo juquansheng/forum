@@ -3,12 +3,13 @@ package com.uuuuuuuuuuuuuuu.core.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.uuuuuuuuuuuuuuu.core.mapper.auth.UserAccountMapper;
+import com.uuuuuuuuuuuuuuu.core.mapper.forum.UserAccountMapper;
 import com.uuuuuuuuuuuuuuu.core.service.UserAccountService;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -56,6 +57,7 @@ public class UserAccountServiceImpl extends ServiceImpl<UserAccountMapper, UserA
     }
 
     @Override
+    @Transactional(transactionManager = "forumTransactionManager")
     public void updateUserLastLoginInfo(String pkId) {
         UserAccount userAccountUpdate = new UserAccount();
         userAccountUpdate.setPkId(pkId);

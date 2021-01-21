@@ -203,4 +203,10 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return passwordEncoder.matches(rawPasswordVo,encodedPassword);
     }
+
+    public static void main(String[] args) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encode = passwordEncoder.encode("123");
+        System.out.println("encode"+encode);
+    }
 }

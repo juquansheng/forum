@@ -13,8 +13,10 @@ import org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchRestCli
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
+@EnableScheduling
 @EnableFeignClients("com.uuuuuuuuuuuuuuu.feign.feign")
 @SpringBootApplication(exclude = {
         DruidDataSourceAutoConfigure.class,
@@ -23,8 +25,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
         ElasticsearchRestClientAutoConfiguration.class})
 @MapperScan(basePackages = {"com.uuuuuuuuuuuuuuu.core.mapper.*"})
 @ComponentScan(basePackages = {
-        "com.uuuuuuuuuuuuuuu.core.service",
-        "com.uuuuuuuuuuuuuuu.core.service"})
+        "com.uuuuuuuuuuuuuuu.core.*",
+        "com.uuuuuuuuuuuuuuu.auth.*"})
 @EnableAuthorizationServer
 public class AuthApplication {
 

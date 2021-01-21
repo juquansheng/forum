@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -16,16 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(value = "auth相关接口test", tags = {"auth相关接口test"})
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/test1")
 public class TestController {
     @Value("${fdfs.so-timeout}")
     private String soTimeout;
 
     @ApiOperation(value = "test", notes = "test", response = String.class)
     @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @ResponseBody
     public String test() {
         try {
-            return soTimeout;
+            String result = "success";
+            return result;
         } catch (Exception e) {
             return "test";
         }
