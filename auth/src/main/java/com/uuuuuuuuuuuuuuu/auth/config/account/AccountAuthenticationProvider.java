@@ -4,9 +4,11 @@ package com.uuuuuuuuuuuuuuu.auth.config.account;
 import com.uuuuuuuuuuuuuuu.auth.config.MyUserDetailsService;
 import com.uuuuuuuuuuuuuuu.core.service.UserAccountService;
 import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
+import com.uuuuuuuuuuuuuuu.redis.utils.RedisUtil;
 import com.uuuuuuuuuuuuuuu.util.util.PatternMatcherUtils;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -30,13 +32,18 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
     /**
      * 用户登录是否被锁定    一小时 redisKey 前缀
      */
-    private static final String IS_LOCK = "is_lock_";
+    private static final String ACCOUNT_IS_LOCK = "account_is_lock_";
+    /**
+     * 登录ip是否被锁定    一小时 redisKey 前缀
+     */
+    private static final String IP_IS_LOCK = "ip_is_lock_";
 
     private MyUserDetailsService userDetailsService;
 
-    private RedisTemplate redisTemplate;
-
     private UserAccountService userAccountService;
+
+    private RedisUtil redisUtil;
+
 
 
     @Override
@@ -85,32 +92,31 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
      */
     private void retryLimitCheckPh(UserDto userDto, String password) {
         // 访问一次，计数一次
-        ValueOperations<String, String> opsForValue = redisTemplate.opsForValue();
         String loginCountKey = LOGIN_COUNT + userDto.getMobile();
-        String isLockKey = IS_LOCK + userDto.getMobile();
-        opsForValue.increment(loginCountKey, 1);
+        String isLockKey = ACCOUNT_IS_LOCK + userDto.getMobile();
+        //opsForValue.increment(loginCountKey, 1);
+        redisUtil.incrBy(loginCountKey, 1);
 
-        if (redisTemplate.hasKey(isLockKey)) {
+        if (redisUtil.hasKey(isLockKey)) {
             throw new RuntimeException("帐号[" + userDto.getMobile() + "]已被禁止登录！");
         }
 
         // 计数大于5时，设置用户被锁定一小时
-        String loginCount = String.valueOf(opsForValue.get(loginCountKey));
+        String loginCount = String.valueOf(redisUtil.get(loginCountKey));
         int retryCount = (5 - Integer.parseInt(loginCount));
         if (retryCount <= 0) {
-            opsForValue.set(isLockKey, "LOCK");
-            redisTemplate.expire(isLockKey, 1, TimeUnit.HOURS);
-            redisTemplate.expire(loginCountKey, 1, TimeUnit.HOURS);
+            redisUtil.set(isLockKey, "LOCK");
+            redisUtil.expire(isLockKey, 1, TimeUnit.HOURS);
+            redisUtil.expire(loginCountKey, 1, TimeUnit.HOURS);
             throw new RuntimeException("由于密码输入错误次数过多，帐号[" + userDto.getMobile() + "]已被禁止登录！");
         }
         boolean matches = doCredentialsMatch(userDto.getPassword(),password);
         if (!matches) {
-            String msg = retryCount <= 0 ? "您的账号一小时内禁止登录！" : "您还剩" + retryCount + "次重试的机会";
+            String msg = "您还剩" + retryCount + "次重试的机会";
             throw new RuntimeException("帐号或密码不正确！" + msg);
         }
-
         //清空登录计数
-        redisTemplate.delete(loginCountKey);
+        redisUtil.delete(loginCountKey);
         try {
             userAccountService.updateUserLastLoginInfo(userDto.getPkId());
         } catch (Exception e) {
@@ -123,32 +129,31 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
      */
     private void retryLimitCheckEm(UserDto userDto, String password) {
         // 访问一次，计数一次
-        ValueOperations<String, String> opsForValue = redisTemplate.opsForValue();
         String loginCountKey = LOGIN_COUNT + userDto.getEmail();
-        String isLockKey = IS_LOCK + userDto.getEmail();
-        opsForValue.increment(loginCountKey, 1);
+        String isLockKey = ACCOUNT_IS_LOCK + userDto.getEmail();
+        redisUtil.incrBy(loginCountKey, 1);
 
-        if (redisTemplate.hasKey(isLockKey)) {
+        if (redisUtil.hasKey(isLockKey)) {
             throw new RuntimeException("帐号[" + userDto.getEmail() + "]已被禁止登录！");
         }
 
         // 计数大于5时，设置用户被锁定一小时
-        String loginCount = String.valueOf(opsForValue.get(loginCountKey));
+        String loginCount = String.valueOf(redisUtil.get(loginCountKey));
         int retryCount = (5 - Integer.parseInt(loginCount));
         if (retryCount <= 0) {
-            opsForValue.set(isLockKey, "LOCK");
-            redisTemplate.expire(isLockKey, 1, TimeUnit.HOURS);
-            redisTemplate.expire(loginCountKey, 1, TimeUnit.HOURS);
+            redisUtil.set(isLockKey, "LOCK");
+            redisUtil.expire(isLockKey, 1, TimeUnit.HOURS);
+            redisUtil.expire(loginCountKey, 1, TimeUnit.HOURS);
             throw new RuntimeException("由于密码输入错误次数过多，帐号[" + userDto.getEmail() + "]已被禁止登录！");
         }
         boolean matches = doCredentialsMatch(userDto.getPassword(),password);
         if (!matches) {
-            String msg = retryCount <= 0 ? "您的账号一小时内禁止登录！" : "您还剩" + retryCount + "次重试的机会";
+            String msg = "您还剩" + retryCount + "次重试的机会";
             throw new RuntimeException("帐号或密码不正确！" + msg);
         }
 
         //清空登录计数
-        redisTemplate.delete(loginCountKey);
+        redisUtil.delete(loginCountKey);
         try {
             userAccountService.updateUserLastLoginInfo(userDto.getPkId());
         } catch (Exception e) {
@@ -161,32 +166,31 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
      */
     private void retryLimitCheckPhUserName(UserDto userDto, String password) {
         // 访问一次，计数一次
-        ValueOperations<String, String> opsForValue = redisTemplate.opsForValue();
         String loginCountKey = LOGIN_COUNT + userDto.getUsername();
-        String isLockKey = IS_LOCK + userDto.getUsername();
-        opsForValue.increment(loginCountKey, 1);
+        String isLockKey = ACCOUNT_IS_LOCK + userDto.getUsername();
+        redisUtil.incrBy(loginCountKey, 1);
 
-        if (redisTemplate.hasKey(isLockKey)) {
+        if (redisUtil.hasKey(isLockKey)) {
             throw new RuntimeException("帐号[" + userDto.getUsername() + "]已被禁止登录！");
         }
 
         // 计数大于5时，设置用户被锁定一小时
-        String loginCount = String.valueOf(opsForValue.get(loginCountKey));
+        String loginCount = String.valueOf(redisUtil.get(loginCountKey));
         int retryCount = (5 - Integer.parseInt(loginCount));
         if (retryCount <= 0) {
-            opsForValue.set(isLockKey, "LOCK");
-            redisTemplate.expire(isLockKey, 1, TimeUnit.HOURS);
-            redisTemplate.expire(loginCountKey, 1, TimeUnit.HOURS);
+            redisUtil.set(isLockKey, "LOCK");
+            redisUtil.expire(isLockKey, 1, TimeUnit.HOURS);
+            redisUtil.expire(loginCountKey, 1, TimeUnit.HOURS);
             throw new RuntimeException("由于密码输入错误次数过多，帐号[" + userDto.getUsername() + "]已被禁止登录！");
         }
         boolean matches = doCredentialsMatch(userDto.getPassword(),password);
         if (!matches) {
-            String msg = retryCount <= 0 ? "您的账号一小时内禁止登录！" : "您还剩" + retryCount + "次重试的机会";
+            String msg = "您还剩" + retryCount + "次重试的机会";
             throw new RuntimeException("帐号或密码不正确！" + msg);
         }
 
         //清空登录计数
-        redisTemplate.delete(loginCountKey);
+        redisUtil.delete(loginCountKey);
         try {
             userAccountService.updateUserLastLoginInfo(userDto.getPkId());
         } catch (Exception e) {
@@ -206,7 +210,7 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
 
     public static void main(String[] args) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encode = passwordEncoder.encode("123");
+        String encode = passwordEncoder.encode("yuuki");
         System.out.println("encode"+encode);
     }
 }

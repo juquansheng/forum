@@ -1,9 +1,11 @@
 package com.uuuuuuuuuuuuuuu.auth.config;
 
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -74,8 +76,18 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private DataSource dataSource;
+    //@Autowired
+    //private DataSource dataSource;
+
+    //  获取配置文件里面当前数据源的的配置信息
+    @Value("${spring.datasource.dynamic.datasource.master.url}")
+    private String url;
+    @Value("${spring.datasource.dynamic.datasource.master.username}")
+    private String user;
+    @Value("${spring.datasource.dynamic.datasource.master.password}")
+    private String password;
+    @Value("${spring.datasource.dynamic.datasource.master.driver-class-name}")
+    private String driverClass;
 
     /**
      * DataSource 配置
@@ -87,20 +99,19 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return new DruidDataSource();
     }*/
 
-    /*@Bean("oauth2DateSource")
-    @Primary
+    @Bean("oauth2DateSource")
+    //@Primary
     public DataSource dataSource() {
         // 配置数据源
-        log.info("---初始化AuthorizationServerConfiguration数据源------druidConfigYML:"+druidConfigYML);
+        log.info("---初始化AuthorizationServerConfiguration数据源------{},{},{},{}:",url,user,password,driverClass);
         DruidDataSource datasource = new DruidDataSource();
-        datasource.setUrl(druidConfigYML.getUrl());
-        datasource.setUsername(druidConfigYML.getUsername());
-        datasource.setPassword(druidConfigYML.getPassword());
-        datasource.setDriverClassName(druidConfigYML.getDriverClassName());
+        datasource.setUrl(url);
+        datasource.setUsername(user);
+        datasource.setPassword(password);
+        datasource.setDriverClassName(driverClass);
         datasource.setInitialSize(5);
         datasource.setMinIdle(5);
         datasource.setMaxActive(20);
-        datasource.setDbType(druidConfigYML.getType());
         datasource.setMaxWait(60000);
         datasource.setTimeBetweenEvictionRunsMillis(60000);
         datasource.setMinEvictableIdleTimeMillis(300000);
@@ -108,13 +119,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         datasource.setTestWhileIdle(true);
         datasource.setTestOnBorrow(false);
         datasource.setTestOnReturn(false);
-        try {
-            datasource.setFilters(druidConfigYML.getFilters());
-        } catch (SQLException e) {
-            log.error("druid configuration initialization filter", e);
-        }
         return datasource;
-    }*/
+    }
 
     /**
      * token仓库
@@ -130,7 +136,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @DS("oauth2")
     public ClientDetailsService jdbcClientDetailsService() {
         // 基于JDBC实现，需要实现在数据库配置客户端信息以及密码加密方式
-        JdbcClientDetailsService detailsService = new JdbcClientDetailsService(dataSource);
+        JdbcClientDetailsService detailsService = new JdbcClientDetailsService(dataSource());
         detailsService.setPasswordEncoder(passwordEncoder);
         return detailsService;
     }
@@ -165,7 +171,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Primary
     @DS("oauth2")
     public AuthorizationCodeServices authorizationCodeServices() {
-        return new JdbcAuthorizationCodeServices(dataSource);
+        return new JdbcAuthorizationCodeServices(dataSource());
     }
 
 

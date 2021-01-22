@@ -20,9 +20,9 @@ package com.uuuuuuuuuuuuuuu.auth.config.account;
 
 import com.uuuuuuuuuuuuuuu.auth.config.MyUserDetailsService;
 import com.uuuuuuuuuuuuuuu.core.service.UserAccountService;
+import com.uuuuuuuuuuuuuuu.redis.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;
@@ -38,20 +38,20 @@ public class AccountSecurityConfigurer extends SecurityConfigurerAdapter<Default
 	private MyUserDetailsService userDetailsService;
 
 	@Autowired
-	private RedisTemplate redisTemplate;
+	private UserAccountService userAccountService;
 
 	@Autowired
-	private UserAccountService userAccountService;
+	private RedisUtil redisUtil;
 
 	@Override
 	public void configure(HttpSecurity http) {
-		 AccountAuthenticationProvider emailAuthenticationProvider = AccountAuthenticationProvider
+		 AccountAuthenticationProvider accountAuthenticationProvider = AccountAuthenticationProvider
 				 .builder()
-				 .redisTemplate(redisTemplate)
+				 .redisUtil(redisUtil)
 				 .userAccountService(userAccountService)
 				 .userDetailsService(userDetailsService)
 				 .build();
-		http.authenticationProvider(emailAuthenticationProvider);
+		http.authenticationProvider(accountAuthenticationProvider);
 	}
 
 }
