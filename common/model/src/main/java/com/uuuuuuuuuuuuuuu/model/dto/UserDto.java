@@ -18,6 +18,7 @@ public class UserDto implements UserDetails {
     private String mobile;
     private String email;
     private Boolean isEnabled;
+    private String roleName;
 
     private List<GrantedAuthority> authorities = new ArrayList<>();
 

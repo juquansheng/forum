@@ -34,5 +34,7 @@ public class PassPortConst {
     public static final int LOGIN_ACCOUNT = 2;
     public static final int LOGIN_EMAIL = 3;
 
+    public static final String JWT_SECURITY = "groundControlToMajorTom";
+
 
 }

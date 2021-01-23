@@ -6,6 +6,7 @@ import com.baomidou.dynamic.datasource.annotation.DS;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -13,8 +14,13 @@ import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.common.ExpiringOAuth2RefreshToken;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.common.OAuth2RefreshToken;
 import org.springframework.security.oauth2.config.annotation.builders.ClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -22,17 +28,19 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
-import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
-import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
-import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.*;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  */
@@ -75,6 +83,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
 
     //@Autowired
     //private DataSource dataSource;
@@ -142,6 +151,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     }
 
     /**
+     * 用于扩展token数据
+     * @return
+     */
+    @Bean
+    public TokenEnhancer forumTokenEnhancer() {
+        return new ForumTokenEnhancer();
+    }
+    /**
      * 管理令牌的服务
      *
      * @return
@@ -161,6 +178,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         //services.setAccessTokenValiditySeconds(60*5);//五分钟 测试用
         // 刷新令牌时间
         services.setRefreshTokenValiditySeconds(60*60*24*15);
+
+        //services.setReuseRefreshToken(true);
+
+        //令牌增强
+        //将增强的token设置到增强链中
+        services.setTokenEnhancer(forumTokenEnhancer());
+
         return services;
     }
 
@@ -179,6 +203,24 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // 从数据库中读取客户端配置
         ClientDetailsServiceBuilder<?> clientDetailsServiceBuilder = clients.withClientDetails(jdbcClientDetailsService());
+
+        /*clients
+                // 使用本地的方式存储, 为了简易方便测试
+                .inMemory()
+                // 客户端id
+                .withClient("yuuki")
+                // 客户端密钥
+                .secret(new BCryptPasswordEncoder().encode("yuuki"))
+                // 客户端可以请求的资源列表, id
+                .resourceIds("yuuki")
+                // 该客户端允许的授权类型 authorization_code(授权码模式),password(密码模式),refresh_token(刷新令牌),implicit(简化模式),client_credentials(客户端模式)
+                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
+                // 允许的授权范围
+                .scopes("all")
+                // false 授权码模式时, 申请授权码时是跳转到授权页面, true 不跳转页面, 直接获取到授权码
+                .autoApprove(false)
+                //加上验证回调地址
+                .redirectUris("http://www.baidu.com");*/
         //内存
         //InMemoryClientDetailsServiceBuilder clientDetailsServiceBuilder = clients.inMemory();
         /*if (ArrayUtil.isNotEmpty(securityProperties.getOauth().getClients())) {
