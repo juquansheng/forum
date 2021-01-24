@@ -183,16 +183,16 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
             redisUtil.expire(loginCountKey, 1, TimeUnit.HOURS);
             throw new RuntimeException("由于密码输入错误次数过多，帐号[" + userDto.getUsername() + "]已被禁止登录！");
         }
-        boolean matches = doCredentialsMatch(userDto.getPassword(),password);
+        /*boolean matches = doCredentialsMatch(userDto.getPassword(),password);
         if (!matches) {
             String msg = "您还剩" + retryCount + "次重试的机会";
             throw new RuntimeException("帐号或密码不正确！" + msg);
-        }
+        }*/
 
         //清空登录计数
         redisUtil.delete(loginCountKey);
         try {
-            userAccountService.updateUserLastLoginInfo(userDto.getPkId());
+            //userAccountService.updateUserLastLoginInfo(userDto.getPkId());
         } catch (Exception e) {
             e.printStackTrace();
         }

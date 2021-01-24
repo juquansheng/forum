@@ -108,3 +108,16 @@ fdfs:
 
 
 
+auth-server: http://localhost:30002/auth
+security:
+  oauth2:
+    client:
+      client-id: yuuki
+      client-secret: yuuki
+      user-authorization-uri: ${auth-server}/oauth/authorize
+      access-token-uri: ${auth-server}/oauth/token
+    resource:
+      id: user-client
+      user-info-uri: ${auth-server}/v1/oauth/userinfo
+    authorization:
+      check-token-access: ${auth-server}/oauth/check_token

@@ -262,12 +262,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 // 开启刷新token
                 .reuseRefreshTokens(true);
 
-        DefaultAccessTokenConverter converter = new DefaultAccessTokenConverter();
+        /*DefaultAccessTokenConverter converter = new DefaultAccessTokenConverter();
         UserAuthenticationConverter userAuthenticationConverter
                 = new UserAuthenticationConverter();
         userAuthenticationConverter.setUserDetailsService(userDetailsService);
         converter.setUserTokenConverter(userAuthenticationConverter);
-        endpoints.accessTokenConverter(converter);
+        endpoints.accessTokenConverter(converter);*/
     }
 
     /**
@@ -281,9 +281,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         security
                 .tokenKeyAccess("permitAll()")
                 //isAuthenticated():排除anonymous   isFullyAuthenticated():排除anonymous以及remember-me
-                .checkTokenAccess("isAuthenticated()")
+                //.checkTokenAccess("isAuthenticated()")
                 //oauth/check_token公开
-                //.checkTokenAccess("permitAll()")
+                .checkTokenAccess("permitAll()")
                 //允许表单认证
                 .allowFormAuthenticationForClients();
     }

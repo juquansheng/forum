@@ -14,8 +14,8 @@ public class UserAuthenticationConverter extends DefaultUserAuthenticationConver
     @Override
     public Map<String, ?> convertUserAuthentication(Authentication authentication) {
         Map<String, Object> response = new LinkedHashMap();
-        //都返回
-        response.put("principal", authentication);
+        response.put("user_name", authentication.getPrincipal());
+
         /*response.put("user_name", authentication.getName());
         if (authentication.getAuthorities() != null && !authentication.getAuthorities().isEmpty()) {
             response.put("authorities", AuthorityUtils.authorityListToSet(authentication.getAuthorities()));
