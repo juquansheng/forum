@@ -26,22 +26,22 @@ public class MybatisPlusGenerator {
     private String author = "juquansheng";
     // 数据源相关配置
 
-    private String url = "jdbc:mysql://localhost:3306/forum?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&serverTimezone=UTC";
+    private String url = "jdbc:mysql://106.13.15.122:3306/forum?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&serverTimezone=UTC";
 
     private String driverName = "com.mysql.cj.jdbc.Driver";
     private String userName = "root";
     //private String userPwd = "yuuki!@#";
-    private String userPwd = "123456";
+    private String userPwd = "MIma123456!";
     // DAO的包路径
     private String entityPackage = "com.uuuuuuuuuuuuuuu.model";
-    private String mapperPackage = "com.uuuuuuuuuuuuuuu.blog";
-    private String mapperXmlPackage = "com.uuuuuuuuuuuuuuu.blog.mapper";
+    private String mapperPackage = "com.uuuuuuuuuuuuuuu.core";
+    private String mapperXmlPackage = "com.uuuuuuuuuuuuuuu.core.mapper";
     // 待生成的表名，注意是覆盖更新
     private static String[] tableNames;
     // "galaxy","earth","country_config","city_area","administrative_conifg","grid_category","online_grid"
     static{
         tableNames = new String[]{
-                "blog"
+                "user","user_passport"
         };
     }
 
@@ -81,7 +81,7 @@ public class MybatisPlusGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
         pc.setEntity(entityPackage+".entity");
-        pc.setMapper(mapperPackage+".mapper");
+        pc.setMapper(mapperPackage+".mapper.forum");
         pc.setXml(mapperXmlPackage+".mapper.xml");
         mpg.setPackageInfo(pc);
 

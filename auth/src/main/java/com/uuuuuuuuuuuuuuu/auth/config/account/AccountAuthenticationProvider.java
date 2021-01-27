@@ -118,7 +118,8 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
         //清空登录计数
         redisUtil.delete(loginCountKey);
         try {
-            userAccountService.updateUserLastLoginInfo(userDto.getPkId());
+            //添加登录记录
+            //userAccountService.updateUserLastLoginInfo(userDto.getPkId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -155,7 +156,8 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
         //清空登录计数
         redisUtil.delete(loginCountKey);
         try {
-            userAccountService.updateUserLastLoginInfo(userDto.getPkId());
+            //添加登录记录
+            //userAccountService.updateUserLastLoginInfo(userDto.getPkId());
         } catch (Exception e) {
             e.printStackTrace();
         }

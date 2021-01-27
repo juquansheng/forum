@@ -4,8 +4,10 @@ package com.uuuuuuuuuuuuuuu.auth.config;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.uuuuuuuuuuuuuuu.core.service.UserAccountService;
+import com.uuuuuuuuuuuuuuu.core.service.UserPassportService;
 import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
+import com.uuuuuuuuuuuuuuu.model.entity.forum.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -22,16 +24,16 @@ import org.springframework.stereotype.Service;
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserAccountService userAccountService;
+    private UserPassportService userPassportService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserAccount account = userAccountService.getUserByAccount(username);
-        if (account==null) {
+        User user = userPassportService.getUserByPassport(username,1);
+        if (user==null) {
             throw new RuntimeException("用户名[" + username + "]账号不存在！");
         }
         UserDto userDto = new UserDto();
-        userDto.setPkId(account.getPkId());
+        userDto.setPkId(user.getId());
         userDto.setUsername(username);
         userDto.setIsEnabled(true);
         userDto.setPassword("$2a$10$MuipaCvr75sFnnIes6gF5OqRgZx8rD5evalnakyWqOVAZXtWUmgoW");
@@ -45,8 +47,8 @@ public class MyUserDetailsService implements UserDetailsService {
     }
     @DS("slave")
     public UserDetails loadUserByPhone(String phone) throws UsernameNotFoundException {
-        UserAccount account = userAccountService.getUserByPhone(phone);
-        if (account==null) {
+        User user = userPassportService.getUserByPassport(phone,1);
+        if (user==null) {
             throw new RuntimeException("手机号[" + phone + "]账号不存在！");
         }
         UserDto userDto = new UserDto();
@@ -62,8 +64,8 @@ public class MyUserDetailsService implements UserDetailsService {
     }
     @DS("slave")
     public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
-        UserAccount account = userAccountService.getUserByEmail(email);
-        if (account==null) {
+        User user = userPassportService.getUserByPassport(email,1);
+        if (user==null) {
             throw new RuntimeException("邮箱[" + email + "]账号不存在！");
         }
         UserDto userDto = new UserDto();

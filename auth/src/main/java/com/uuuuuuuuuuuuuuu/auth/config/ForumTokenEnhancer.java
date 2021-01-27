@@ -44,6 +44,6 @@ public class ForumTokenEnhancer implements TokenEnhancer {
 
     private String getNewToken(UserDto userDto) {
         //用jwtToken,数据保存token中
-        return JwtTokenUtil.createJWT(userDto.getPkId(), userDto.getUsername(), "admin", "audience", "issuer", 10, PassPortConst.JWT_SECURITY);
+        return JwtTokenUtil.createJWT(userDto.getPkId().toString(), userDto.getUsername(), "admin", "audience", "issuer", 10, PassPortConst.JWT_SECURITY);
     }
 }
