@@ -6,6 +6,12 @@ package com.uuuuuuuuuuuuuuu.model.constant;
 public class Constants {
 
     /**
+     * 系是否删除标识
+     */
+    public static final int DELETE = -1;
+    public static final int NORMAL = 0;
+
+    /**
      * 系统全局是否标识
      */
     public static final int YES = 1;

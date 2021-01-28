@@ -9,15 +9,15 @@ public class PassPortConst {
     /**
      * 短信/邮箱登录验证码
      */
-    public static final String VERIFY_CODE_KEY = "verifyCodeKey";
+    public static final String VERIFY_CODE_KEY = "verifyCodeKey:";
     /**
      * 短信/邮箱修改密码验证码
      */
-    public static final String VERIFY_CODE_MODIFY_PWD = "verifyCodeKeyModifyPWD";
+    public static final String VERIFY_CODE_MODIFY_PWD = "verifyCodeKeyModifyPWD:";
     /**
      * 短信/邮箱修改密码验证码
      */
-    public static final String VERIFY_CODE_LOGIN = "verifyCodeKeyLogin";
+    public static final String VERIFY_CODE_LOGIN = "verifyCodeKeyLogin:";
 
     public static final String TYPE_REGISTER = "1";
     public static final String TYPE_MODIFY_PWD = "2";
@@ -26,12 +26,12 @@ public class PassPortConst {
     /**
      * 图片验证码
      */
-    public static final String CAPTCHA_CODE_KEY = "captchaCodeKey";
+    public static final String CAPTCHA_CODE_KEY = "captchaCodeKey:";
     /**
-     * 登陆方式
+     * 登陆方式1账号 2手机号 2邮箱
      */
-    public static final int LOGIN_PHONE = 1;
-    public static final int LOGIN_ACCOUNT = 2;
+    public static final int LOGIN_ACCOUNT = 1;
+    public static final int LOGIN_PHONE = 2;
     public static final int LOGIN_EMAIL = 3;
 
     public static final String JWT_SECURITY = "groundControlToMajorTom";

@@ -3,12 +3,11 @@ package com.uuuuuuuuuuuuuuu.auth.controller;
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uuuuuuuuuuuuuuu.auth.config.phone.MobileAuthenticationToken;
-import com.uuuuuuuuuuuuuuu.core.mapper.forum.UserAccountMapper;
 import com.uuuuuuuuuuuuuuu.model.constant.PassPortConst;
 import com.uuuuuuuuuuuuuuu.model.vo.LoginVo;
 import com.uuuuuuuuuuuuuuu.model.vo.MobileLoginVo;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
-import com.uuuuuuuuuuuuuuu.redis.utils.RedisUtil;
+import com.uuuuuuuuuuuuuuu.redis.utils.RedisClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -65,9 +64,7 @@ public class Oauth2Controller {
     private Map<String, ClientDetailsService> clientDetailsServiceMap;
 
     @Autowired
-    private RedisUtil redisUtil;
-    @Autowired
-    private UserAccountMapper userAccountMapper;
+    private RedisClient redisUtil;
 
     /**
      * 登录ip是否被锁定    一小时 redisKey 前缀

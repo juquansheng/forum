@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
 import com.uuuuuuuuuuuuuuu.model.entity.forum.User;
 import com.uuuuuuuuuuuuuuu.model.entity.forum.UserPassport;
+import com.uuuuuuuuuuuuuuu.model.vo.RegisterVo;
 
 
 /**
@@ -32,6 +33,11 @@ public interface UserPassportService extends IService<UserPassport> {
      */
     void updateUserLastLoginInfo(User user);
 
-
+    /**
+     * 注册
+     * @param registerVo
+     * @return
+     */
+    User register(RegisterVo registerVo);
 
 }

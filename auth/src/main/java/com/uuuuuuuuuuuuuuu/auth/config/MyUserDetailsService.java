@@ -2,11 +2,9 @@
 package com.uuuuuuuuuuuuuuu.auth.config;
 
 
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.uuuuuuuuuuuuuuu.core.service.UserAccountService;
 import com.uuuuuuuuuuuuuuu.core.service.UserPassportService;
+import com.uuuuuuuuuuuuuuu.model.constant.PassPortConst;
 import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
-import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
 import com.uuuuuuuuuuuuuuu.model.entity.forum.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -14,7 +12,6 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 
@@ -28,53 +25,36 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userPassportService.getUserByPassport(username,1);
+        User user = userPassportService.getUserByPassport(username, PassPortConst.LOGIN_ACCOUNT);
         if (user==null) {
             throw new RuntimeException("用户名[" + username + "]账号不存在！");
         }
-        UserDto userDto = new UserDto();
-        userDto.setPkId(user.getId());
-        userDto.setUsername(username);
-        userDto.setIsEnabled(true);
-        userDto.setPassword("$2a$10$MuipaCvr75sFnnIes6gF5OqRgZx8rD5evalnakyWqOVAZXtWUmgoW");
-        /*userDto.setMobile(account.getCurrentMdtskMobNumber());
-        userDto.setEmail(account.getCurrentMdtskEmailNumber());
-        userDto.setPassword(account.getCurrentMdtskCipherCode());
-        userDto.setIsEnabled(account.getStatus()==0);*/
-        // 用户拥有的权限
-        userDto.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
-        return userDto;
+        return userToUserDto(user);
     }
-    @DS("slave")
+
     public UserDetails loadUserByPhone(String phone) throws UsernameNotFoundException {
-        User user = userPassportService.getUserByPassport(phone,1);
+        User user = userPassportService.getUserByPassport(phone,PassPortConst.LOGIN_PHONE);
         if (user==null) {
             throw new RuntimeException("手机号[" + phone + "]账号不存在！");
         }
-        UserDto userDto = new UserDto();
-        /*userDto.setPkId(account.getPkId());
-        userDto.setMobile(phone);
-        userDto.setUsername(account.getCurrentMdtskCustomNumber());
-        userDto.setEmail(account.getCurrentMdtskEmailNumber());
-        userDto.setPassword(account.getCurrentMdtskCipherCode());
-        userDto.setIsEnabled(account.getStatus()==0);*/
-        // 用户拥有的权限
-        userDto.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
-        return userDto;
+        return userToUserDto(user);
     }
-    @DS("slave")
+
     public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
-        User user = userPassportService.getUserByPassport(email,1);
+        User user = userPassportService.getUserByPassport(email,PassPortConst.LOGIN_EMAIL);
         if (user==null) {
             throw new RuntimeException("邮箱[" + email + "]账号不存在！");
         }
+        return userToUserDto(user);
+    }
+
+    private UserDto userToUserDto(User user){
         UserDto userDto = new UserDto();
-      /*  userDto.setPkId(account.getPkId());
-        userDto.setEmail(email);
-        userDto.setUsername(account.getCurrentMdtskCustomNumber());
-        userDto.setMobile(account.getCurrentMdtskMobNumber());
-        userDto.setPassword(account.getCurrentMdtskCipherCode());
-        userDto.setIsEnabled(account.getStatus()==0);*/
+        userDto.setPkId(user.getId());
+        userDto.setHash(user.getHash());
+        userDto.setUsername(user.getUserName());
+        userDto.setPassword(user.getPassword());
+        userDto.setIsEnabled(user.getStatus()==0);
         // 用户拥有的权限
         userDto.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         return userDto;

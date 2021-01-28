@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-
+@Deprecated
 @Component
 public class RedisService {
 	private static final Logger logger = LoggerFactory.getLogger(RedisService.class);

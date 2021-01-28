@@ -15,8 +15,7 @@ public class UserDto implements UserDetails {
     private Long pkId;
     private String username;
     private String password;
-    private String mobile;
-    private String email;
+    private String hash;
     private Boolean isEnabled;
     private String roleName;
 

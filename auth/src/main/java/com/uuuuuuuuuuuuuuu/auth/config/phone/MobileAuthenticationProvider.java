@@ -2,11 +2,9 @@ package com.uuuuuuuuuuuuuuu.auth.config.phone;
 
 
 import com.uuuuuuuuuuuuuuu.auth.config.MyUserDetailsService;
-import com.uuuuuuuuuuuuuuu.redis.utils.RedisUtil;
+import com.uuuuuuuuuuuuuuu.redis.utils.RedisClient;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -20,7 +18,7 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
 
     private MyUserDetailsService userDetailsService;
 
-    private RedisUtil redisUtil;
+    private RedisClient redisClient;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
