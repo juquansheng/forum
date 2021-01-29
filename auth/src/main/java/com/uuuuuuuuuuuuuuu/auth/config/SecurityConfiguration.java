@@ -81,6 +81,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/actuator/**",
                         "/test/**",
                         "/index",
+                        "/register/**",
                         "/oauth/**",
                         "/druid/**"
                 ).permitAll()

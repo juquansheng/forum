@@ -43,16 +43,16 @@ public class RegisterController {
     @ApiOperation("注册")
     public Result register(@RequestBody RegisterVo registerVo) throws Exception {
 
-        String code = redisClient
+        /*String code = redisClient
                 .get(PassPortConst.VERIFY_CODE_KEY + registerVo.getType() + ":" + registerVo.getAccount());
         if (!registerVo.getVerifyCode().equals(code)) {
             return Result.failed("验证码错误");
-        }
+        }*/
         //验证密码是否合法 暂时不用
         String password = registerVo.getPassword();
-        if (!PatternMatcherUtils.passwordNormal(password)){
+        /*if (!PatternMatcherUtils.passwordNormal(password)){
             return Result.failed("密码不合法");
-        }
+        }*/
         try {
             //密码加密
             password = passwordEncoder.encode(password);
