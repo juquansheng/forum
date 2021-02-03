@@ -87,8 +87,8 @@ spring:
       value-serializer: org.apache.kafka.account.serialization.StringSerializer
   elasticsearch:
     host: 106.53.237.234:9200,106.53.237.234:9200
-    username:
-    password:
+    username: elastic
+    password: 123456
     connectNum: 10
     connectPerRoute: 50
     token: es-token
