@@ -23,6 +23,7 @@
         <module>datasource</module>
         <module>mongodb</module>
         <module>feign</module>
+        <module>oauth2-resource</module>
 
     </modules>
 

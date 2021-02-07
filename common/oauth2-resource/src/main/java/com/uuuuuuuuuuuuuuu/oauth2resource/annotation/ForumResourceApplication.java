@@ -15,6 +15,6 @@ import java.lang.annotation.*;
 @Documented
 @Inherited
 @ForumResourceServer
-@SpringBootApplication(exclude = {DruidDataSourceAutoConfigure.class, UserDetailsServiceAutoConfiguration.class})
+//@SpringBootApplication(exclude = {DruidDataSourceAutoConfigure.class, UserDetailsServiceAutoConfiguration.class})
 public @interface ForumResourceApplication {
 }

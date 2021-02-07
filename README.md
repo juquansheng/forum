@@ -5,7 +5,13 @@ logstash : docker run -d --restart=always --privileged=true --name logstash -p 5
 进入es
 docker exec -it elasticsearch /bin/bash
 
+##swagger访问路径 
+http://localhost:30002/swagger-ui/index.html
 
+##oauth2 
+header
+key:Authorization
+value:bearer token
 
 elasticsearch.yml配置文件设置开启x-pack插件
 xpack.security.enabled: true 

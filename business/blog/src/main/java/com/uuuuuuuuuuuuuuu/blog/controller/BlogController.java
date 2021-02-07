@@ -1,16 +1,19 @@
 package com.uuuuuuuuuuuuuuu.blog.controller;
 
 import com.uuuuuuuuuuuuuuu.feign.feign.SearchFeignClient;
+import com.uuuuuuuuuuuuuuu.model.exception.ThrowableUtils;
+import com.uuuuuuuuuuuuuuu.model.vo.BlogVO;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
+import com.uuuuuuuuuuuuuuu.util.util.MongoDBConvertUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -48,6 +51,16 @@ public class BlogController {
                                          sorter) throws Exception {
 
 
+        return Result.ok();
+    }
+
+
+    @ApiOperation(value = "新增博客", notes = "新增博客", response = String.class)
+    @PostMapping("/add")
+    public Result add(@Validated @RequestBody BlogVO blogVO, BindingResult result) throws Exception {
+        // 参数校验
+        ThrowableUtils.checkParamArgument(result);
+        mongoTemplate.getCollection("blog").insertOne(MongoDBConvertUtils.toDocument(blogVO));
         return Result.ok();
     }
 

@@ -8,7 +8,6 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
     <artifactId>oauth2-resource</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>oauth2-resource</name>
