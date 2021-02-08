@@ -39,11 +39,6 @@ public class BlogController {
     @Resource
     private SearchFeignClient searchFeignClient;
 
-    @ApiOperation(value = "test", notes = "test", response = String.class)
-    @GetMapping("/test")
-    public String test(String param) throws Exception {
-        return "---------------------------:"+param;
-    }
 
     @ApiOperation(value = "查询博客列表", notes = "查询博客列表", response = String.class)
     @GetMapping("/elasticSearchBlog")
