@@ -1,21 +1,28 @@
 package com.uuuuuuuuuuuuuuu.mongodb.config;
 
-import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.internal.MongoClientImpl;
+import com.mongodb.connection.Cluster;
+import com.mongodb.connection.ConnectionPoolSettings;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * description: MongoConfig
@@ -46,9 +53,10 @@ public class MongoConfig {
 
     // 覆盖默认的MongoDbFactory
     @Bean
-    MongoDatabase mongoDbFactory() {//MongoDbFactory mongoDbFactory() {
+    SimpleMongoClientDatabaseFactory simpleMongoClientDatabaseFactory() {//MongoDbFactory mongoDbFactory() {
         //客户端配置（连接数、副本集群验证）
-        MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
+        //log.info("-----------------低版本配置------------------");
+        /*MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
         builder.connectionsPerHost(applicationMongoDBConfig.getConnectionsPerHost());
         builder.minConnectionsPerHost(applicationMongoDBConfig.getMinConnectionsPerHost());
         if (StringUtils.isNotBlank(applicationMongoDBConfig.getReplicaSet())) {
@@ -84,7 +92,6 @@ public class MongoConfig {
             serverAddresses.add(serverAddress);
         }
         log.info("serverAddresses:" + serverAddresses.toString());
-
         // 连接认证
         List<MongoCredential> mongoCredentialList = new ArrayList<>();
         if (applicationMongoDBConfig.getUsername() != null) {
@@ -96,9 +103,54 @@ public class MongoConfig {
         log.info("mongoCredentialList:" + mongoCredentialList.toString());
 
         //创建客户端和Factory
-        MongoClient mongoClient = new MongoClient(serverAddresses, mongoCredentialList, mongoClientOptions);
-        MongoDatabase database = mongoClient.getDatabase(applicationMongoDBConfig.getDb());
-        return mongoClient.getDatabase(applicationMongoDBConfig.getDb());
-        //return new SimpleMongoDbFactory(mongoClient, applicationMongoDBConfig.getDb());
+        com.mongodb.MongoClient mongoClient = new com.mongodb.MongoClient(serverAddresses, mongoCredentialList, mongoClientOptions);
+        //return mongoClient.getDatabase(applicationMongoDBConfig.getDb());
+        return new SimpleMongoDbFactory(mongoClient, applicationMongoDBConfig.getDb());*/
+
+
+        log.info("-----------------高版本配置------------------");
+         /*String connectionString = "mongodb://user:password@host:port/database";
+        if (Objects.isNull(user)) {
+        connectionString = "mongodb://host:port/database";
     }
+    connectionString = connectionString.replaceAll("user", user)
+            .replaceAll("password", password)
+                .replaceAll("host", host)
+                .replaceAll("port", port)
+                .replaceAll("database", database);*/
+
+
+        // MongoDB地址列表
+        List<ServerAddress> serverAddressList = new ArrayList<>();
+        for (String host : applicationMongoDBConfig.getHosts()) {
+            Integer index = applicationMongoDBConfig.getHosts().indexOf(host);
+            Integer port = applicationMongoDBConfig.getPorts().get(index);
+
+            ServerAddress serverAddress = new ServerAddress(host, port);
+            serverAddressList.add(serverAddress);
+        }
+        log.info("serverAddresses:" + serverAddressList.toString());
+
+        MongoClientSettings settings = null;
+        ConnectionPoolSettings poolSetting =ConnectionPoolSettings.builder().
+                maxWaitTime(applicationMongoDBConfig.getMaxWaitTime(), TimeUnit.MILLISECONDS).build();
+        if(StringUtils.isNotBlank(applicationMongoDBConfig.getUsername())) {
+            MongoCredential credential = MongoCredential.createScramSha1Credential(applicationMongoDBConfig.getUsername(),
+                    applicationMongoDBConfig.getDb(), applicationMongoDBConfig.getPassword().toCharArray());
+            settings = MongoClientSettings.builder()
+                    .credential(credential)
+                    .applyToConnectionPoolSettings(builder->builder.applySettings(poolSetting))
+                    .applyToClusterSettings(builder -> builder.hosts(serverAddressList)).build();
+        }else {
+            settings = MongoClientSettings.builder().applyToConnectionPoolSettings(builder->builder.applySettings(poolSetting))
+                    .applyToClusterSettings(builder -> builder.hosts(serverAddressList)).build();
+        }
+        //创建客户端和Factory
+        MongoClient mongoClient = MongoClients.create(settings);
+        return new SimpleMongoClientDatabaseFactory(mongoClient, applicationMongoDBConfig.getDb());
+    }
+
+
+
+
 }

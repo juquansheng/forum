@@ -14,6 +14,7 @@ public class UserAuthenticationConverter extends DefaultUserAuthenticationConver
     @Override
     public Map<String, ?> convertUserAuthentication(Authentication authentication) {
         Map<String, Object> response = new LinkedHashMap();
+        //先什么都传给资源模块，后续根据安全需求修改传部分数据
         response.put("user_name", authentication.getPrincipal());
 
         /*response.put("user_name", authentication.getName());

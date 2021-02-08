@@ -50,7 +50,7 @@ public class BlogVO extends BaseEntity<BlogVO> {
      * 用户id
      */
     //@NotBlank(message = "用户id不能为空！")
-    //private String userId;
+    private String userId;
     /**
      * 是否发布
      */

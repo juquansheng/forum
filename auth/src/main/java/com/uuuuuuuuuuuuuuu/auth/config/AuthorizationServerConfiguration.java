@@ -262,12 +262,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 // 开启刷新token
                 .reuseRefreshTokens(true);
 
-        /*DefaultAccessTokenConverter converter = new DefaultAccessTokenConverter();
+        DefaultAccessTokenConverter converter = new DefaultAccessTokenConverter();
         UserAuthenticationConverter userAuthenticationConverter
                 = new UserAuthenticationConverter();
         userAuthenticationConverter.setUserDetailsService(userDetailsService);
         converter.setUserTokenConverter(userAuthenticationConverter);
-        endpoints.accessTokenConverter(converter);*/
+        endpoints.accessTokenConverter(converter);
     }
 
     /**

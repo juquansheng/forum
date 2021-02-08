@@ -22,6 +22,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
         DruidDataSourceAutoConfigure.class,
         MongoDataAutoConfiguration.class,
         MongoAutoConfiguration.class,
+        MongodbConfiguration.class,
         ElasticsearchRestClientAutoConfiguration.class})
 @MapperScan(basePackages = {"com.uuuuuuuuuuuuuuu.core.mapper.*"})
 @ComponentScan(basePackages = {

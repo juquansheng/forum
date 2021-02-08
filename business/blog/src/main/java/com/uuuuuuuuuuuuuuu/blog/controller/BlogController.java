@@ -1,14 +1,20 @@
 package com.uuuuuuuuuuuuuuu.blog.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
 import com.uuuuuuuuuuuuuuu.feign.feign.SearchFeignClient;
+import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
 import com.uuuuuuuuuuuuuuu.model.exception.ThrowableUtils;
 import com.uuuuuuuuuuuuuuu.model.vo.BlogVO;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
 import com.uuuuuuuuuuuuuuu.util.util.MongoDBConvertUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -58,12 +64,21 @@ public class BlogController {
     @ApiOperation(value = "新增博客", notes = "新增博客", response = String.class)
     @PostMapping("/add")
     public Result add(@Validated @RequestBody BlogVO blogVO, BindingResult result) throws Exception {
+        UserDto userDto = JSON.parseObject(JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication().getPrincipal()), UserDto.class);
         // 参数校验
         ThrowableUtils.checkParamArgument(result);
+        blogVO.setUserId(userDto.getPkId().toString());
         mongoTemplate.getCollection("blog").insertOne(MongoDBConvertUtils.toDocument(blogVO));
         return Result.ok();
     }
 
-
+    @ApiOperation(value = "获取博客", notes = "获取博客", response = String.class)
+    @GetMapping("/get")
+    public Result add(@RequestParam(required = false) String id) throws Exception {
+        UserDto userDto = JSON.parseObject(JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication().getPrincipal()), UserDto.class);
+        // 根据文章主键获取
+        FindIterable<Document> documents = mongoTemplate.getCollection("blog").find(new BasicDBObject().append("userId", id));
+        return Result.ok(documents.cursor().next());
+    }
 
 }
