@@ -46,6 +46,9 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <hutool.version>5.3.1</hutool.version>
+        <httpclient.version>4.5.12</httpclient.version>
+        <okhttp.version>4.4.1</okhttp.version>
+        <JustAuth.version>1.15.9</JustAuth.version>
 
         <servlet-api.version>3.1.0</servlet-api.version>
         <commons-lang3.version>3.8.1</commons-lang3.version>

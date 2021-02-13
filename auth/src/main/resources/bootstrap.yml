@@ -68,3 +68,12 @@ audience:
   name: yuuki
   expiresSecond: 1000
   refreshSecond: 1000
+
+justauth:
+  cache:
+    type: custom
+third-party:
+  qq:
+    appId: 1111520142
+    appKey: miqKQ5aUsoEAdnDB
+    redirectUri: api.malaxiaoyugan.com

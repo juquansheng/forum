@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Classname RegisterCtl
  * @description 注册控制器
- * @Author chuanfang
+ * @Author juquansheng
  * @Date 2020/7/6 12:21
  * @Version 1.0
  */
