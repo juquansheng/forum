@@ -3,6 +3,7 @@ package com.uuuuuuuuuuuuuuu.auth.config;
 
 
 import com.uuuuuuuuuuuuuuu.core.service.UserPassportService;
+import com.uuuuuuuuuuuuuuu.core.service.UserThirdPartyService;
 import com.uuuuuuuuuuuuuuu.model.constant.PassPortConst;
 import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
 import com.uuuuuuuuuuuuuuu.model.entity.forum.User;
@@ -25,6 +26,8 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserPassportService userPassportService;
+    @Autowired
+    private UserThirdPartyService userThirdPartyService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -53,14 +56,14 @@ public class MyUserDetailsService implements UserDetailsService {
 
     //不存在插入信用，存在直接返回 TODO
     public UserDetails loadUserByThirdParty(AuthUser authUser,String source) throws UsernameNotFoundException {
-        User user = userPassportService.getUserByThirdParty(authUser.getUuid(),source);
+        User user = userThirdPartyService.getUserByThirdParty(authUser.getUuid(),source);
         if (user==null) {
             //新增第三方用户
             RegisterFromThirdPartyVo registerFromThirdPartyVo = new RegisterFromThirdPartyVo();
             BeanUtils.copyProperties(authUser,registerFromThirdPartyVo);
             registerFromThirdPartyVo.setGender(Integer.parseInt(authUser.getGender().getCode()));
             //throw new RuntimeException("邮箱[" + authUser.getUuid() + "]账号不存在！");
-            user = userPassportService.registerFromThirdParty(registerFromThirdPartyVo,source);
+            user = userThirdPartyService.registerFromThirdParty(registerFromThirdPartyVo,source);
         }
         return userToUserDto(user);
     }
