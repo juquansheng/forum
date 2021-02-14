@@ -41,7 +41,7 @@ public class MybatisPlusGenerator {
     // "galaxy","earth","country_config","city_area","administrative_conifg","grid_category","online_grid"
     static{
         tableNames = new String[]{
-                "user","user_passport"
+                "user_third_party"
         };
     }
 
@@ -80,7 +80,7 @@ public class MybatisPlusGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
-        pc.setEntity(entityPackage+".entity");
+        pc.setEntity(entityPackage+".entity.forum");
         pc.setMapper(mapperPackage+".mapper.forum");
         pc.setXml(mapperXmlPackage+".mapper.xml");
         mpg.setPackageInfo(pc);

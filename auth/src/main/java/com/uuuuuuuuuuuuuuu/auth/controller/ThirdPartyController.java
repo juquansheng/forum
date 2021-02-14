@@ -2,8 +2,10 @@ package com.uuuuuuuuuuuuuuu.auth.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uuuuuuuuuuuuuuu.auth.config.AuthStateRedisCache;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
+import com.uuuuuuuuuuuuuuu.redis.utils.RedisClient;
 import com.xkcoding.http.config.HttpConfig;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -19,11 +21,28 @@ import me.zhyd.oauth.utils.AuthScopeUtils;
 import me.zhyd.oauth.utils.AuthStateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.common.exceptions.UnapprovedClientAuthenticationException;
+import org.springframework.security.oauth2.provider.*;
+import org.springframework.security.oauth2.provider.client.InMemoryClientDetailsService;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.Writer;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.util.Arrays;
@@ -43,7 +62,34 @@ import java.util.Map;
 @RequestMapping("/thirdParty")
 public class ThirdPartyController {
 
+    @Resource
+    private ObjectMapper objectMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private AuthorizationServerTokenServices myAuthorizationServerTokenServices;
+
+    @Autowired
+    private TokenStore tokenStore;
+
+    @Autowired
+    private Map<String, ClientDetailsService> clientDetailsServiceMap;
+
+    @Autowired
+    private RedisClient redisUtil;
+
+    /**
+     * 登录ip是否被锁定    一小时 redisKey 前缀
+     */
+    private static final String IP_IS_LOCK = "ip_is_lock_";
+    //暂时写死
+    static final String CLIENT_ID = "yuuki";
+    static final String CLIENT_SECRET = "yuuki";
     @Autowired
     private AuthStateRedisCache stateRedisCache;
 
@@ -464,5 +510,69 @@ public class ThirdPartyController {
             throw new AuthException("未获取到有效的Auth配置");
         }
         return authRequest;
+    }
+
+    private void exceptionHandler(HttpServletResponse response, Exception e) throws IOException {
+        log.error("exceptionHandler-error:", e);
+        exceptionHandler(response, e.getMessage());
+    }
+
+    private void exceptionHandler(HttpServletResponse response, String msg) throws IOException {
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        writerObj(response, msg);
+    }
+
+    private void writerObj(HttpServletResponse response, Object obj) throws IOException {
+        response.setContentType("application/json;charset=UTF-8");
+        int status = response.getStatus();
+        response.setStatus(HttpStatus.OK.value());
+        try (
+                Writer writer = response.getWriter()
+        )
+        {
+            if (status == cn.hutool.http.HttpStatus.HTTP_OK) {
+                writer.write(objectMapper.writeValueAsString(Result.ok(obj,"登录成功")));
+            }else {
+                writer.write(objectMapper.writeValueAsString(Result.loginFailed(obj.toString())));
+            }
+            writer.flush();
+        }
+    }
+
+    private ClientDetails getClient(String clientId, String clientSecret, InMemoryClientDetailsService clientDetailsService) {
+        ClientDetailsService detailsService = null;
+        if (clientDetailsService == null) {
+            //动态代理只能用接口接收 jdk
+            detailsService = clientDetailsServiceMap.get("clientDetailsService");
+        }
+        assert detailsService != null;
+        ClientDetails clientDetails = detailsService.loadClientByClientId(clientId);
+        if (clientDetails == null) {
+            throw new UnapprovedClientAuthenticationException("clientId对应的信息不存在");
+        } else if (!passwordEncoder.matches(clientSecret, clientDetails.getClientSecret())) {
+            throw new UnapprovedClientAuthenticationException("clientSecret不匹配");
+        }
+        return clientDetails;
+    }
+
+    private void writerToken(HttpServletRequest request, HttpServletResponse response, AbstractAuthenticationToken token
+            , String badCredenbtialsMsg, Long userId) throws IOException {
+        try {
+            //暂时写死
+            ClientDetails clientDetails = getClient(CLIENT_ID, CLIENT_SECRET, null);
+            TokenRequest tokenRequest = new TokenRequest(new HashMap<>(10), CLIENT_ID, clientDetails.getScope(), "customer");
+            OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(clientDetails);
+            Authentication authentication = authenticationManager.authenticate(token);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request, authentication);
+            OAuth2AccessToken oAuth2AccessToken =  myAuthorizationServerTokenServices.createAccessToken(oAuth2Authentication);
+            oAuth2Authentication.setAuthenticated(true);
+            writerObj(response, oAuth2AccessToken);
+        } catch (BadCredentialsException | InternalAuthenticationServiceException e) {
+            exceptionHandler(response, badCredenbtialsMsg);
+            e.printStackTrace();
+        } catch (Exception e) {
+            exceptionHandler(response, e);
+        }
     }
 }

@@ -77,3 +77,6 @@ third-party:
     appId: 1111520142
     appKey: miqKQ5aUsoEAdnDB
     redirectUri: api.malaxiaoyugan.com
+
+url:
+  webSite: http://www.malaxiaoyugan.com/

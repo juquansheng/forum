@@ -1,4 +1,4 @@
-package com.uuuuuuuuuuuuuuu.auth.config.phone;
+package com.uuuuuuuuuuuuuuu.auth.config.thirdParty;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,31 +7,41 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
 import java.util.Collection;
 
 
-public class MobileAuthenticationToken extends AbstractAuthenticationToken {
+public class ThirdPartyAuthenticationToken extends AbstractAuthenticationToken {
 
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
-    //手机号
+    //用户信息
     private  Object principal;
-    //验证码
-    private Object code;
+    //第三方来源
+    private Object source;
 
     // ~ Constructors
     // ===================================================================================================
 
-
-    public MobileAuthenticationToken(Object principal, Object code) {
+    /**
+     * This constructor can be safely used by any code that wishes to create a
+     * <code>UsernamePasswordAuthenticationToken</code>, as the {@link #isAuthenticated()}
+     * will return <code>false</code>.
+     *
+     */
+    public ThirdPartyAuthenticationToken(Object principal, Object source) {
         super(null);
         this.principal= principal;
-        this.code = code;
+        this.source = source;
         setAuthenticated(false);
     }
 
     /**
+     * This constructor should only be used by <code>AuthenticationManager</code> or
+     * <code>AuthenticationProvider</code> implementations that are satisfied with
+     * producing a trusted (i.e. {@link #isAuthenticated()} = <code>true</code>)
+     * authentication token.
+     *
      * @param principal
      * @param authorities
      */
-    public MobileAuthenticationToken(Object principal, Collection<? extends GrantedAuthority> authorities) {
+    public ThirdPartyAuthenticationToken(Object principal, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.principal = principal;
         super.setAuthenticated(true);
@@ -42,7 +52,7 @@ public class MobileAuthenticationToken extends AbstractAuthenticationToken {
 
     @Override
     public Object getCredentials() {
-        return this.code;
+        return null;
     }
 
     @Override
@@ -52,7 +62,7 @@ public class MobileAuthenticationToken extends AbstractAuthenticationToken {
 
     @Override
     public Object getDetails() {
-        return null;
+        return this.source;
     }
 
     @Override

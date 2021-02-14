@@ -9,6 +9,7 @@ import com.uuuuuuuuuuuuuuu.model.constant.Constants;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
 import com.uuuuuuuuuuuuuuu.model.entity.forum.User;
 import com.uuuuuuuuuuuuuuu.model.entity.forum.UserPassport;
+import com.uuuuuuuuuuuuuuu.model.vo.RegisterFromThirdPartyVo;
 import com.uuuuuuuuuuuuuuu.model.vo.RegisterVo;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

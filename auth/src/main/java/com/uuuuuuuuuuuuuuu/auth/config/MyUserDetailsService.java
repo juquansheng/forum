@@ -6,6 +6,9 @@ import com.uuuuuuuuuuuuuuu.core.service.UserPassportService;
 import com.uuuuuuuuuuuuuuu.model.constant.PassPortConst;
 import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
 import com.uuuuuuuuuuuuuuu.model.entity.forum.User;
+import com.uuuuuuuuuuuuuuu.model.vo.RegisterFromThirdPartyVo;
+import me.zhyd.oauth.model.AuthUser;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -44,6 +47,20 @@ public class MyUserDetailsService implements UserDetailsService {
         User user = userPassportService.getUserByPassport(email,PassPortConst.LOGIN_EMAIL);
         if (user==null) {
             throw new RuntimeException("邮箱[" + email + "]账号不存在！");
+        }
+        return userToUserDto(user);
+    }
+
+    //不存在插入信用，存在直接返回 TODO
+    public UserDetails loadUserByThirdParty(AuthUser authUser,String source) throws UsernameNotFoundException {
+        User user = userPassportService.getUserByThirdParty(authUser.getUuid(),source);
+        if (user==null) {
+            //新增第三方用户
+            RegisterFromThirdPartyVo registerFromThirdPartyVo = new RegisterFromThirdPartyVo();
+            BeanUtils.copyProperties(authUser,registerFromThirdPartyVo);
+            registerFromThirdPartyVo.setGender(Integer.parseInt(authUser.getGender().getCode()));
+            //throw new RuntimeException("邮箱[" + authUser.getUuid() + "]账号不存在！");
+            user = userPassportService.registerFromThirdParty(registerFromThirdPartyVo,source);
         }
         return userToUserDto(user);
     }

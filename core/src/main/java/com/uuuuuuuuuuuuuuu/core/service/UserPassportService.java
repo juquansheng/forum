@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.uuuuuuuuuuuuuuu.model.entity.UserAccount;
 import com.uuuuuuuuuuuuuuu.model.entity.forum.User;
 import com.uuuuuuuuuuuuuuu.model.entity.forum.UserPassport;
+import com.uuuuuuuuuuuuuuu.model.vo.RegisterFromThirdPartyVo;
 import com.uuuuuuuuuuuuuuu.model.vo.RegisterVo;
 
 
@@ -18,12 +19,13 @@ import com.uuuuuuuuuuuuuuu.model.vo.RegisterVo;
 public interface UserPassportService extends IService<UserPassport> {
 
     /**
-     * 获取用户信息
+     * 根据账号获取用户信息
      * @param account 账号
      * @param type 账号类型
      * @return
      */
     User getUserByPassport(String account,Integer type);
+
 
     /**
      * 更新用户最后一次登录的状态信息
@@ -39,5 +41,7 @@ public interface UserPassportService extends IService<UserPassport> {
      * @return
      */
     User register(RegisterVo registerVo);
+
+
 
 }
