@@ -64,6 +64,8 @@ public class BlogController {
         ThrowableUtils.checkParamArgument(result);
         blogVO.setUserId(userDto.getPkId().toString());
         mongoTemplate.getCollection("blog").insertOne(MongoDBConvertUtils.toDocument(blogVO));
+        //同步内容到es
+        searchFeignClient.addElasticSearchIndexByUid("");
         return Result.ok();
     }
 

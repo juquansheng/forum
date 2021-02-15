@@ -174,7 +174,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         // 令牌策略
         services.setTokenStore(tokenStore);
         // 令牌有效期
-        services.setAccessTokenValiditySeconds(60*60*2);
+        services.setAccessTokenValiditySeconds(60*60*24);
         //services.setAccessTokenValiditySeconds(60*5);//五分钟 测试用
         // 刷新令牌时间
         services.setRefreshTokenValiditySeconds(60*60*24*15);
