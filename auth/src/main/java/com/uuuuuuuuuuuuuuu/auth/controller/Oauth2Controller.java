@@ -296,7 +296,7 @@ public class Oauth2Controller {
     }
 
 
-
+    @ApiOperation(value = "第三方登录")
     @RequestMapping("/render/{source}")
     @ResponseBody
     public void renderAuth(@PathVariable("source") String source, HttpServletResponse response) throws IOException {
@@ -312,6 +312,7 @@ public class Oauth2Controller {
     /**
      * oauth平台中配置的授权回调地址，以本项目为例，在创建github授权应用时的回调地址应为：http://127.0.0.1:8443/oauth/callback/github
      */
+    @ApiOperation(value = "回调地址")
     @RequestMapping("/callback/{source}")
     public void callback(@PathVariable("source") String source, AuthCallback callback,
                               HttpServletRequest request, HttpServletResponse httpServletResponse) throws IOException {

@@ -74,9 +74,9 @@ justauth:
     type: custom
 third-party:
   qq:
-    appId: 1111520142
-    appKey: miqKQ5aUsoEAdnDB
-    redirectUri: api.malaxiaoyugan.com
+    appId: 101936606
+    appKey: 4723b6e5a6c226cc2274b04134411195
+    redirectUri: https://api.malaxiaoyugan.com/oauth/callback/qq
 
 url:
   webSite: http://www.malaxiaoyugan.com/
