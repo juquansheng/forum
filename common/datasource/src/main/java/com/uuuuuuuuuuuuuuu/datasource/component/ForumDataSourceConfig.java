@@ -20,7 +20,7 @@ import javax.sql.DataSource;
  * version: 1.0 <br>
  */
 @Configuration
-@MapperScan(basePackages = ForumDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "blogSqlSessionFactory")
+@MapperScan(basePackages = ForumDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "forumSqlSessionFactory")
 public class ForumDataSourceConfig {
     // 指定当前数据源扫描的Mapper(Dao)包
 
