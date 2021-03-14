@@ -100,7 +100,7 @@ spring:
 
 
 
-auth-server: http://localhost:30002/auth
+auth-server: http://localhost:30002
 security:
   oauth2:
     client:

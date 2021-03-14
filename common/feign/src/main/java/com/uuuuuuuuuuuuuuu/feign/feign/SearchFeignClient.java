@@ -19,7 +19,7 @@ public interface SearchFeignClient {
      * @param uid
      * @return
      */
-    @PostMapping("/search/deleteElasticSearchByUid")
+    @PostMapping("/es/deleteElasticSearchByUid")
     public Result deleteElasticSearchByUid(@RequestParam(required = true) String uid);
 
     /**
@@ -28,7 +28,7 @@ public interface SearchFeignClient {
      * @param uids
      * @return
      */
-    @PostMapping("/search/deleteElasticSearchByUids")
+    @PostMapping("/es/deleteElasticSearchByUids")
     public Result deleteElasticSearchByUids(@RequestParam(required = true) String uids);
 
     /**
@@ -36,7 +36,7 @@ public interface SearchFeignClient {
      *
      * @return
      */
-    @PostMapping("/search/initElasticSearchIndex")
+    @PostMapping("/es/initElasticSearchIndex")
     public Result initElasticSearchIndex();
 
     /**
@@ -44,50 +44,7 @@ public interface SearchFeignClient {
      *
      * @return
      */
-    @PostMapping("/search/addElasticSearchIndexByUid")
+    @PostMapping("/es/addElasticSearchIndexByUid")
     public Result addElasticSearchIndexByUid(@RequestParam(required = true) String uid);
-
-
-    /**
-     * 通过博客uid删除Solr博客索引
-     *
-     * @param uid
-     * @return
-     */
-    @PostMapping("/search/deleteSolrIndexByUid")
-    public Result deleteSolrIndexByUid(@RequestParam(required = true) String uid);
-
-    /**
-     * 通过uids删除Solr博客索引
-     *
-     * @param uids
-     * @return
-     */
-    @PostMapping("/search/deleteSolrIndexByUids")
-    public Result deleteSolrIndexByUids(@RequestParam(required = true) String uids);
-
-    /**
-     * 初始化Solr索引
-     *
-     * @return
-     */
-    @PostMapping("/search/initSolrIndex")
-    public Result initSolrIndex();
-
-    /**
-     * 通过uid来增加Solr索引
-     *
-     * @return
-     */
-    @PostMapping("/search/addSolrIndexByUid")
-    public Result addSolrIndexByUid(@RequestParam(required = true) String uid);
-
-    /**
-     * 通过uid来更新Solr索引
-     *
-     * @return
-     */
-    @PostMapping("/search/updateSolrIndexByUid")
-    public Result updateSolrIndexByUid(@RequestParam(required = true) String uid);
 
 }

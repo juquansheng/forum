@@ -11,6 +11,7 @@ import com.uuuuuuuuuuuuuuu.model.vo.Result;
 import com.uuuuuuuuuuuuuuu.util.util.MongoDBConvertUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
  * author: juquansheng
  * version: 1.0 <br>
  */
+@Slf4j
 @Api(value = "博客相关接口", tags = {"博客相关接口"})
 @RestController
 @RequestMapping(value = "blog")
@@ -65,8 +67,8 @@ public class BlogController {
         blogVO.setUserId(userDto.getPkId().toString());
         mongoTemplate.getCollection("blog").insertOne(MongoDBConvertUtils.toDocument(blogVO));
         //同步内容到es
-        searchFeignClient.addElasticSearchIndexByUid("");
-        return Result.ok();
+        Result result1 = searchFeignClient.addElasticSearchIndexByUid("1");
+        return Result.ok(result1);
     }
 
     @ApiOperation(value = "获取博客", notes = "获取博客", response = String.class)

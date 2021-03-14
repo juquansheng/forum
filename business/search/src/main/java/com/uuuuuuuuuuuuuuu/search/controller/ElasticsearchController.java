@@ -1,6 +1,9 @@
 package com.uuuuuuuuuuuuuuu.search.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.uuuuuuuuuuuuuuu.model.constant.Constants;
+import com.uuuuuuuuuuuuuuu.model.dto.UserDto;
 import com.uuuuuuuuuuuuuuu.model.es.dto.BlogESData;
 import com.uuuuuuuuuuuuuuu.model.global.BaseMessageConf;
 import com.uuuuuuuuuuuuuuu.model.vo.Result;
@@ -10,12 +13,14 @@ import com.uuuuuuuuuuuuuuu.search.service.ElasticsearchTemplate;
 import com.uuuuuuuuuuuuuuu.util.util.StringConvertUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +32,7 @@ import java.util.List;
  * author: juquansheng
  * version: 1.0 <br>
  */
+@Slf4j
 @Api(value = "博客ElasticSearch相关接口", tags = {"博客ElasticSearch相关接口"})
 @RestController
 @RequestMapping(value = "es")
@@ -102,11 +108,13 @@ public class ElasticsearchController {
     @ApiOperation(value = "ElasticSearch通过博客Uid添加索引", notes = "添加博客", response = String.class)
     @PostMapping("/addElasticSearchIndexByUid")
     public Result addElasticSearchIndexByUid(@RequestParam(required = true) String uid) {
+        UserDto userDto = JSON.parseObject(JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication().getPrincipal()), UserDto.class);
         //查询数据库是否存在对应博客数据
 
         //如果存在则保存数据
 
-        return Result.ok();
+        log.info("ElasticSearch通过博客Uid添加索引");
+        return Result.ok(uid);
 
     }
 
@@ -114,7 +122,7 @@ public class ElasticsearchController {
     @ApiOperation(value = "ElasticSearch初始化索引", notes = "ElasticSearch初始化索引", response = String.class)
     @PostMapping("/initElasticSearchIndex")
     public Result initElasticSearchIndex() throws Exception {
-
+        UserDto userDto = JSON.parseObject(JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication().getPrincipal()), UserDto.class);
         elasticsearchIndex.createIndex(BlogESData.class);
 
 

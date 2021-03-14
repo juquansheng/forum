@@ -13,7 +13,7 @@ import java.util.List;
 
  */
 @Data
-public class BlogVO extends BaseEntity<BlogVO> {
+public class BlogVO{
 
     /**
      * 博客标题

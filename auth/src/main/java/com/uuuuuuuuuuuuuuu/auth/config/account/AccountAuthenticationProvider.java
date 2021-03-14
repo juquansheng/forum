@@ -127,7 +127,7 @@ public class AccountAuthenticationProvider implements AuthenticationProvider {
 
     public static void main(String[] args) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encode = passwordEncoder.encode("yuuki");
-        System.out.println("encode"+encode);
+        String encode = passwordEncoder.encode("123456");
+        System.out.println("encode："+encode);
     }
 }
