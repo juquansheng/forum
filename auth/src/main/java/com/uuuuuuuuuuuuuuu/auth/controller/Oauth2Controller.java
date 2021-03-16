@@ -159,7 +159,7 @@ public class Oauth2Controller {
         }
     }
     @ApiOperation(value = "登出功能")
-    @RequestMapping(value = "/oauth/logout", method = RequestMethod.POST)
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
     @ResponseBody
     public Object logout(@RequestHeader("Authorization") String authorization) {
         String accessToken = authorization.split(" ")[1];

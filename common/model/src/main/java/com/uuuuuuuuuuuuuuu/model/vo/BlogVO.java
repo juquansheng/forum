@@ -35,12 +35,12 @@ public class BlogVO{
     /**
      * 标签uid
      */
-    @NotBlank(message = "标签uid不能为空！")
+    //@NotBlank(message = "标签uid不能为空！")
     private String tagUid;
     /**
      * 博客分类UID
      */
-    @NotBlank(message = "博客分类不能为空！")
+    //@NotBlank(message = "博客分类不能为空！")
     private String blogSortUid;
     /**
      * 标题图片UID

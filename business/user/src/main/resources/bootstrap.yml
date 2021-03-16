@@ -1,6 +1,6 @@
 spring:
   application:
-    name: credit
+    name: user
   cloud:
     config:
       discovery:
@@ -11,7 +11,7 @@ spring:
       #      环境
       profile: ${SPRING.PROFILES.ACTIVE:local}
       #      应用名称
-      name: credit
+      name: user
       username: user
       password: 123
   datasource:
@@ -25,7 +25,7 @@ spring:
       password: ${CONFIG_SERVER_PASSWORD:123}
 
 server:
-  port: 31003
+  port: 31000
   servlet:
     context-path: /
 
@@ -59,6 +59,6 @@ management:
   endpoint:
     #    服务监控yuuki-admin必须配置读取的日志位置
     logfile:
-      external_file: /home/exchange/business/credit/logs/stdout.log
+      external_file: /home/exchange/business/user/logs/stdout.log
     health:
       show-details: always

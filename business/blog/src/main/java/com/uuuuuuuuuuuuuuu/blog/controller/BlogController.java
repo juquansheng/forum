@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @Api(value = "博客相关接口", tags = {"博客相关接口"})
 @RestController
-@RequestMapping(value = "blog")
+@RequestMapping(value = "article")
 public class BlogController {
 
     @Autowired
@@ -74,10 +74,17 @@ public class BlogController {
     @ApiOperation(value = "获取博客", notes = "获取博客", response = String.class)
     @GetMapping("/get")
     public Result add(@RequestParam(required = false) String id) throws Exception {
-        UserDto userDto = JSON.parseObject(JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication().getPrincipal()), UserDto.class);
-        // 根据文章主键获取
-        FindIterable<Document> documents = mongoTemplate.getCollection("blog").find(new BasicDBObject().append("userId", id));
-        return Result.ok(documents.cursor().next());
+
+        try {
+            UserDto userDto = JSON.parseObject(JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication().getPrincipal()), UserDto.class);
+            // 根据文章主键获取
+            FindIterable<Document> documents = mongoTemplate.getCollection("blog").find(new BasicDBObject().append("userId", id));
+            Document document = documents.cursor().next();
+            return Result.ok(document);
+        }catch (Exception e){
+            return Result.failed("文章不存在");
+        }
+
     }
 
 }
