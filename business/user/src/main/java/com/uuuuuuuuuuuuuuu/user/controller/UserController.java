@@ -39,7 +39,7 @@ public class UserController {
 
     @ApiOperation(value = "获取用户信息", notes = "获取用户信息", response = String.class)
     @PostMapping("/get")
-    public Result get() throws Exception {
+    public Result get() {
         UserDto userDto = JSON.parseObject(JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication().getPrincipal()), UserDto.class);
 
         return Result.ok(userDto);
