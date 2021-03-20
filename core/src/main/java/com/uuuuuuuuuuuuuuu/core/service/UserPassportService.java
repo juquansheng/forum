@@ -19,6 +19,13 @@ import com.uuuuuuuuuuuuuuu.model.vo.RegisterVo;
 public interface UserPassportService extends IService<UserPassport> {
 
     /**
+     * 根据唯一用户名获取用户信息
+     * @param username user表username
+     * @return
+     */
+    User getUserByUsername(String username);
+
+    /**
      * 根据账号获取用户信息
      * @param account 账号
      * @param type 账号类型

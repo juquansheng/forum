@@ -37,6 +37,17 @@ public class UserPassportServiceImpl extends ServiceImpl<UserPassportMapper, Use
     private UserPassportMapper userPassportMapper;
 
     @Override
+    public User getUserByUsername(String username) {
+        try {
+            QueryWrapper<User> userQueryWrapper = new QueryWrapper<User>();
+            userQueryWrapper.lambda().eq(User::getUserName,username).eq(User::getDeleted,Constants.NORMAL);
+            return userMapper.selectOne(userQueryWrapper);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
     public User getUserByPassport(String account,Integer type) {
         try {
             QueryWrapper<UserPassport> userPassportQueryWrapper = new QueryWrapper<UserPassport>();
